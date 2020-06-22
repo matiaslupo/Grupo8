@@ -10,6 +10,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -17,7 +19,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.ButtonGroup;
 
-public class vistaAgregarServicio extends JFrame implements KeyListener {
+public class ventanaAgregarServicio extends JFrame implements KeyListener,MouseListener {
 
 	private JPanel contentPane;
 	private JTextField nombretextField;
@@ -41,7 +43,7 @@ public class vistaAgregarServicio extends JFrame implements KeyListener {
 	private final ButtonGroup tipoInternetGroup = new ButtonGroup();
 	private ActionListener actionlistener;
 
-	public vistaAgregarServicio() {
+	public ventanaAgregarServicio() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 432, 453);
 		contentPane = new JPanel();
@@ -76,7 +78,6 @@ public class vistaAgregarServicio extends JFrame implements KeyListener {
 		departamentoRadioButton = new JRadioButton("Departamento");
 		tipoDepabuttonGroup.add(departamentoRadioButton);
 		contentPane.add(departamentoRadioButton);
-		this.departamentoRadioButton.addKeyListener(this);
 		
 		JPanel panel_10 = new JPanel();
 		contentPane.add(panel_10);
@@ -130,7 +131,6 @@ public class vistaAgregarServicio extends JFrame implements KeyListener {
 		pisoTextField.setEnabled(false);
 		panel_12.add(pisoTextField);
 		pisoTextField.setColumns(10);
-		this.pisoTextField.addKeyListener(this);
 		
 		JPanel panel_7 = new JPanel();
 		contentPane.add(panel_7);
@@ -150,7 +150,6 @@ public class vistaAgregarServicio extends JFrame implements KeyListener {
 		descripcionTextField.setEnabled(false);
 		panel_14.add(descripcionTextField);
 		descripcionTextField.setColumns(15);
-		this.descripcionTextField.addKeyListener(this);
 		
 	    seleccion2Label = new JLabel("Seleccione internet:");
 		seleccion2Label.setEnabled(false);
@@ -160,13 +159,11 @@ public class vistaAgregarServicio extends JFrame implements KeyListener {
 		cienMBNewRadioButton.setEnabled(false);
 		tipoInternetGroup.add(cienMBNewRadioButton);
 		contentPane.add(cienMBNewRadioButton);
-		this.cienMBNewRadioButton.addKeyListener(this);
 		
 		quinientosMBRadioButton= new JRadioButton("500 MB");
 		quinientosMBRadioButton.setEnabled(false);
 		tipoInternetGroup.add(quinientosMBRadioButton);
 		contentPane.add(quinientosMBRadioButton);
-		this.quinientosMBRadioButton.addKeyListener(this);
 		
 		JPanel panel_15 = new JPanel();
 		contentPane.add(panel_15);
@@ -174,41 +171,84 @@ public class vistaAgregarServicio extends JFrame implements KeyListener {
 		aceptarButton = new JButton("Aceptar");
 		aceptarButton.setEnabled(false);
 		panel_15.add(aceptarButton);
+		
+		this.nombretextField.addKeyListener(this);
+		this.calleTextField.addKeyListener(this);
+		this.alturaTextField.addKeyListener(this);
+		this.pisoTextField.addKeyListener(this);
+		this.descripcionTextField.addKeyListener(this);
+		
+		this.casaRadioButton.addMouseListener(this);
+		this.departamentoRadioButton.addMouseListener(this);
+		this.cienMBNewRadioButton.addMouseListener(this);
+		this.quinientosMBRadioButton.addMouseListener(this);
+		
 		this.setVisible(true);
 	}
 
 	public void keyPressed(KeyEvent arg0) {}
 
 	public void keyReleased(KeyEvent arg0) {
-			this.pisoTextField.setEnabled(this.departamentoRadioButton.isSelected());
-			this.pisoTextField.setEnabled(this.departamentoRadioButton.isSelected());
-			this.descripcionLabel.setEnabled(this.departamentoRadioButton.isSelected());
-			this.descripcionTextField.setEnabled(this.departamentoRadioButton.isSelected());
-		
-		
-		String calle=null,descripcion=null,nombre=null;
-		int numero=-1,piso=-1;
+		String nombre, calle, descripcion;
+		int altura=-1,piso=-1;
+		nombre= this.nombretextField.getText();
+		calle =this.calleTextField.getText();
+		descripcion= this.descripcionTextField.getText();
 		try {
-			nombre= this.nombretextField.getText();
-			calle= this.calleTextField.getText();
-			numero= Integer.parseInt(this.alturaTextField.getText());
-			piso =Integer.parseInt(this.pisoTextField.getText());
-			descripcion= this.descripcionTextField.getText();
+			altura= Integer.parseInt(this.alturaTextField.getText());
+			piso= Integer.parseInt(this.pisoTextField.getText());
 		}
-		
-		catch (NumberFormatException e){}
-		
-		boolean res=(this.casaRadioButton.isSelected() && nombre!=null && calle!=null && numero>0) 
-				 || (this.departamentoRadioButton.isSelected() && nombre!=null && calle!=null && numero>0 && piso>=0 && descripcion!=null );
-		
-		
-			this.casaRadioButton.setEnabled(res);
-			this.departamentoRadioButton.setEnabled(res);
-			this.seleccion2Label.setEnabled(res);
-		
-			  this.aceptarButton.setEnabled(res && (this.departamentoRadioButton.isSelected() || this.casaRadioButton.isSelected()));
+		catch(NumberFormatException e) {}
+		boolean res= (this.casaRadioButton.isSelected() && !nombre.equals("") && !calle.equals("") && altura>0) || 
+				(this.departamentoRadioButton.isSelected() && !nombre.equals("") && !calle.equals("") && altura>0 && !descripcion.equals("") && piso>=0);
+		this.seleccion2Label.setEnabled(res);
+		this.cienMBNewRadioButton.setEnabled(res);
+		this.quinientosMBRadioButton.setEnabled(res);
+		if (this.cienMBNewRadioButton.isSelected() || this.quinientosMBRadioButton.isSelected()) {
+			this.aceptarButton.setEnabled(res);
+		}
+	
 	}
 
 	public void keyTyped(KeyEvent arg0) {}
+
+	public void mouseClicked(MouseEvent arg0) {}
+
+	public void mouseEntered(MouseEvent arg0) {}
+
+	public void mouseExited(MouseEvent arg0) {}
+
+	public void mousePressed(MouseEvent arg0) {
+		if (arg0.getButton()==1) {
+			this.pisoLabel.setEnabled(this.departamentoRadioButton.isSelected());
+			this.pisoTextField.setEnabled(this.departamentoRadioButton.isSelected());
+			this.descripcionLabel.setEnabled(this.departamentoRadioButton.isSelected());
+			this.descripcionTextField.setEnabled(this.departamentoRadioButton.isSelected());
+			if (!this.departamentoRadioButton.isEnabled()) {
+				this.pisoTextField.setText("0");
+				this.descripcionTextField.setText("none");
+			}
+			String nombre, calle, descripcion;
+			int altura=-1,piso=-1;
+			nombre= this.nombretextField.getText();
+			calle =this.calleTextField.getText();
+			descripcion= this.descripcionTextField.getText();
+			try {
+				altura= Integer.parseInt(this.alturaTextField.getText());
+				piso= Integer.parseInt(this.pisoTextField.getText());
+			}
+			catch(NumberFormatException e) {}
+			
+			if (this.cienMBNewRadioButton.isSelected() || this.quinientosMBRadioButton.isSelected()) {
+				boolean res= (this.casaRadioButton.isSelected() && !nombre.equals("") && !calle.equals("") && altura>0) || 
+						(this.departamentoRadioButton.isSelected() && !nombre.equals("") && !calle.equals("") && altura>0 && !descripcion.equals("") && piso>=0);
+				this.aceptarButton.setEnabled(res);
+			}
+			
+		}
+		
+	}
+
+	public void mouseReleased(MouseEvent arg0) {}
 
 }
