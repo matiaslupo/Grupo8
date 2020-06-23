@@ -2,7 +2,7 @@ package interfaces;
 
 import personas.Fisica;
 
-public interface State {
+public interface I_State {
 	
     public void pagarFactura(Fisica abonado);
     

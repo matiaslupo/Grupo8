@@ -1,9 +1,9 @@
 package estados;
 
-import interfaces.State;
+import interfaces.I_State;
 import personas.Fisica;
 
-public class Moroso implements State {
+public class Moroso implements I_State {
 
 	public void pagarFactura(Fisica abonado) {
 		// TODO Auto-generated method stub

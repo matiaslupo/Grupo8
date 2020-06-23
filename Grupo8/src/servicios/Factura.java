@@ -19,6 +19,7 @@ public class Factura implements Cloneable {
     private ArrayList <I_Contratable> listaContrataciones;
     private double totalSinP; //porcentaje ya que, dependiendo del tipo de pago se hace un incremento o descuento
     private double totalConP;
+    private boolean pagado;
         
 	/**
 	 * Constructor con un parametro de persona para setear la persona, inicializar la lista de Contrataciones e inicializar en cero totalSinP y totalConP
@@ -30,6 +31,7 @@ public class Factura implements Cloneable {
 		this.listaContrataciones=new ArrayList <I_Contratable>();
 		this.totalConP=0;
 		this.totalSinP=0;
+		this.pagado= false;
 	}
 	public Persona getPersona() {
 		return  this.persona;
@@ -41,6 +43,19 @@ public class Factura implements Cloneable {
 	public double getTotalConP() {
 		return totalConP;
 	}
+	
+	
+	
+	public boolean isPagado() {
+		return pagado;
+	}
+	
+	
+	public void setPagado() {
+		this.pagado = true;
+	}
+	
+	
 	public ArrayList<I_Contratable> getListaContrataciones() {
 		return listaContrataciones;
 	}

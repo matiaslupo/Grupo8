@@ -1,6 +1,8 @@
 package personas;
 
+import estados.SinContratacion;
 import interfaces.I_Pago;
+import interfaces.I_State;
 
 /**
  * @author Grupo8
@@ -8,7 +10,10 @@ import interfaces.I_Pago;
  * Clase que representa a una Persona Fisica
  */
 public class Fisica extends Persona {
+	private I_State estado;
 	private int DNI;
+	public static int contadorFvencidas=0; //contador de facturas vencidas/sin pagar
+	public static double  recargo=1;
 	
 	/**
 	 * Constructor  con dos parametros para setear el nombre y el documento  de la persona fisica
@@ -19,6 +24,7 @@ public class Fisica extends Persona {
 	public Fisica(String nombre,int DNI) {
 		super(nombre);
 		this.DNI=DNI;
+		estado= new SinContratacion(this);
 	}
 	public int getDNI() {
 		return DNI;
@@ -69,4 +75,18 @@ public class Fisica extends Persona {
 	public String toString() {
 		return "Persona fisica Nombre= " + this.getNombre() + " DNI=" + DNI;
 	}
+	public I_State getEstado() {
+		return estado;
+	}
+	public void setEstado(I_State estado) {
+		this.estado = estado;
+	}
+	public int getContadorFvencidas() {
+		return contadorFvencidas;
+	}
+	public void setContadorFvencidas(int contadorFvencidas) {
+		this.contadorFvencidas = contadorFvencidas;
+	}
+	
+	
 }
