@@ -1,10 +1,11 @@
 package vistaMVC;
 
+import controladorMVC.Controlador;
+
 public class PruebaVentana {
 
 	public static void main(String[] args) {
-		ventanaAgregarServicio vista= new ventanaAgregarServicio();
-
+		Controlador c= new Controlador();
 	}
 
 }

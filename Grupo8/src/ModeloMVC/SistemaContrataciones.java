@@ -16,7 +16,6 @@ public class SistemaContrataciones implements ISistema {
 	private static SistemaContrataciones  instancia= null; //APLICO EL PATRON SINGLETON PUES SE INSTANCIA POR UNICA VEZ
 	private HashMap <String,Factura> listaFacturas=new HashMap<String,Factura>();
 
-
     /**
      * Constructor privado de SistemaContrataciones  pues aplicamos el patrón Singleton
      */

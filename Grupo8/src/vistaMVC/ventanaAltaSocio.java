@@ -36,6 +36,7 @@ public class ventanaAltaSocio extends JFrame implements KeyListener,MouseListene
 	
 	
 	public ventanaAltaSocio() {
+		setTitle("Agregar Socio");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 312, 339);
 		contentPane = new JPanel();
@@ -116,6 +117,8 @@ public class ventanaAltaSocio extends JFrame implements KeyListener,MouseListene
 		aceptarBoton = new JButton("Aceptar");
 		aceptarBoton.setEnabled(false);
 		panel_3.add(aceptarBoton);
+		this.aceptarBoton.setActionCommand("AGREGAR SOCIO");
+		
 		this.setVisible(true);
 		
 		this.fisicaRadioButton.addMouseListener(this);
@@ -161,16 +164,7 @@ public class ventanaAltaSocio extends JFrame implements KeyListener,MouseListene
 	public void keyTyped(KeyEvent arg0) {}
 
 
-	public void mouseClicked(MouseEvent arg0) {}
-
-
-	public void mouseEntered(MouseEvent arg0) {}
-
-
-	public void mouseExited(MouseEvent arg0) {}
-
-
-	public void mousePressed(MouseEvent arg0) {
+	public void mouseClicked(MouseEvent arg0) {
 		if (arg0.getButton()==1) {
 			boolean res1= (!this.nombreTextField.getText().equals("") && this.fisicaRadioButton.isSelected());
 			boolean res2= (!this.nombreTextField.getText().equals("") && this.juridicaRadioButton.isSelected());
@@ -190,6 +184,41 @@ public class ventanaAltaSocio extends JFrame implements KeyListener,MouseListene
 	}
 
 
+	public void mouseEntered(MouseEvent arg0) {}
+
+
+	public void mouseExited(MouseEvent arg0) {}
+
+
+	public void mousePressed(MouseEvent arg0) {}
+
+
 	public void mouseReleased(MouseEvent arg0) {}
+
+
+	public void setActionlistener(ActionListener actionlistener) {
+		this.aceptarBoton.addActionListener(actionlistener);
+		this.actionlistener = actionlistener;
+	}
+	
+	public String getNombre() {
+		return this.nombreTextField.getText();
+	}
+	
+	public int getDNI() {
+		return Integer.parseInt(this.dniTextField.getText());
+	}
+	
+	public int getCUIT() {
+		return Integer.parseInt(this.cuitTextField.getText());
+	}
+	
+	public boolean getFisica() {
+		return this.fisicaRadioButton.isSelected();
+	}
+	
+	public boolean getJuridica() {
+		return this.juridicaRadioButton.isSelected();
+	}
 
 }
