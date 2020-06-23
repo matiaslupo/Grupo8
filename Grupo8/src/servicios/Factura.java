@@ -14,7 +14,7 @@ import personas.Persona;
  * <br>
  *Clase que representa una Factura
  */
-public class Factura implements Cloneable {
+public class Factura implements Cloneable, I_Factura {
     private Persona persona;
     private ArrayList <I_Contratable> listaContrataciones;
     private double totalSinP; //porcentaje ya que, dependiendo del tipo de pago se hace un incremento o descuento
@@ -51,8 +51,13 @@ public class Factura implements Cloneable {
 	}
 	
 	
-	public void setPagado() {
-		this.pagado = true;
+	public void setPagado(boolean valor) {
+		this.pagado = valor;
+	}
+	
+
+	public void pagar() {
+		this.pagado= true;
 	}
 	
 	
