@@ -32,6 +32,11 @@ public class ventanaPagar extends JFrame implements KeyListener,MouseListener {
 	private JRadioButton tarjetaRadioButton;
 	private JButton pagarButton ;
 	private ActionListener actionlistener;
+	private JPanel panel_4;
+	private JPanel panel_5;
+	private JPanel panel_6;
+	private JLabel mesLabel;
+	private JTextField mesTextField;
 
 	
 	public ventanaPagar() {
@@ -40,7 +45,7 @@ public class ventanaPagar extends JFrame implements KeyListener,MouseListener {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(6, 1, 0, 0));
+		contentPane.setLayout(new GridLayout(7, 1, 0, 0));
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel);
@@ -59,6 +64,23 @@ public class ventanaPagar extends JFrame implements KeyListener,MouseListener {
 		nombretextField = new JTextField();
 		panel_2.add(nombretextField);
 		nombretextField.setColumns(15);
+		
+		panel_4 = new JPanel();
+		contentPane.add(panel_4);
+		panel_4.setLayout(new GridLayout(0, 2, 0, 0));
+		
+		panel_5 = new JPanel();
+		panel_4.add(panel_5);
+		
+		mesLabel = new JLabel("Mes:");
+		panel_5.add(mesLabel);
+		
+		panel_6 = new JPanel();
+		panel_4.add(panel_6);
+		
+		mesTextField = new JTextField();
+		panel_6.add(mesTextField);
+		mesTextField.setColumns(5);
 		
 		tipoPagoLabel = new JLabel("Seleccione el tipo de pago:");
 		tipoPagoLabel.setEnabled(false);
@@ -88,6 +110,7 @@ public class ventanaPagar extends JFrame implements KeyListener,MouseListener {
 		this.pagarButton.setActionCommand("PAGAR");
 		
 		this.nombretextField.addKeyListener(this);
+		this.mesTextField.addKeyListener(this);
 		this.chequeRadioButton.addMouseListener(this);
 		this.efectivoRadioButton.addMouseListener(this);
 		this.tarjetaRadioButton.addMouseListener(this);
@@ -110,7 +133,12 @@ public class ventanaPagar extends JFrame implements KeyListener,MouseListener {
 	public void keyPressed(KeyEvent arg0) {}
 	public void keyReleased(KeyEvent arg0) {
 		String nombre =this.nombretextField.getText();
-		boolean res= !nombre.equals("");
+		int mes=0;
+		try {
+			mes= Integer.parseInt(this.mesTextField.getText());
+		}
+		catch(NumberFormatException e) {}
+		boolean res= !nombre.equals("") && (mes>=1 && mes<=12);
 		this.tipoPagoLabel.setEnabled(res);
 		this.chequeRadioButton.setEnabled(res);
 		this.efectivoRadioButton.setEnabled(res);
@@ -128,6 +156,10 @@ public class ventanaPagar extends JFrame implements KeyListener,MouseListener {
 	
 	public String getNombre() {
 		return this.nombretextField.getText();
+	}
+	
+	public int getMes() {
+		return Integer.parseInt(this.mesTextField.getText());
 	}
 	
 	public boolean efectivoPago() {

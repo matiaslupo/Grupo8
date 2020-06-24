@@ -15,12 +15,11 @@ public class ventanaPrincipal extends JFrame {
 
 private JPanel contentPane;
 	
-	// LABEL CON LA FECHA ACTUAL
-	private JLabel fechaLabel;
+	// LABEL CON EL MES ACTUAL
+	private JLabel mesActualLabel;
 	// BOTONES
 	private JButton agregarSocioBoton;
 	private JButton quitarSocioBoton;
-	private JButton buscarSocioBoton;
 	private JButton agregarServicioBoton; 
 	private JButton quitarServicioBoton;
 	private JButton pagarBoton;
@@ -31,18 +30,19 @@ private JPanel contentPane;
 	
 	
 	public ventanaPrincipal() {
+		setTitle("Contrataciones de Servicio");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 310, 350);
+		setBounds(100, 100, 399, 411);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(9, 0, 0, 0));
+		contentPane.setLayout(new GridLayout(8, 0, 0, 0));
 		
 		JPanel panel_8 = new JPanel();
 		contentPane.add(panel_8);
 		
-		JLabel fechaLabel = new JLabel("");
-		panel_8.add(fechaLabel);
+		mesActualLabel = new JLabel("");
+		panel_8.add(mesActualLabel);
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel);
@@ -57,13 +57,6 @@ private JPanel contentPane;
 		quitarSocioBoton = new JButton("Quitar Socio");
 		panel_1.add(quitarSocioBoton);
 		this.quitarSocioBoton.setActionCommand("ABRIR QUITAR SOCIO");
-		
-		JPanel panel_2 = new JPanel();
-		contentPane.add(panel_2);
-		
-		buscarSocioBoton = new JButton("Buscar Socio");
-		panel_2.add(buscarSocioBoton);
-		this.buscarSocioBoton.setActionCommand("ABRIR BUSCAR SOCIO");
 		
 		JPanel panel_3 = new JPanel();
 		contentPane.add(panel_3);
@@ -110,13 +103,14 @@ private JPanel contentPane;
 		this.modificaServicioBoton.addActionListener(actionlistener);
 		this.quitarServicioBoton.addActionListener(actionlistener);
 		this.agregarSocioBoton.addActionListener(actionlistener);
-		this.buscarSocioBoton.addActionListener(actionlistener);
 		this.quitarSocioBoton.addActionListener(actionlistener);
 		this.eptBoton.addActionListener(actionlistener);
 		this.pagarBoton.addActionListener(actionlistener);
 		this.actionlistener = actionlistener;
 	}
 	
-	
+	public void setMesActual(int mes) {
+		this.mesActualLabel.setText("Mes Actual: " + mes);
+	}
 	
 }
