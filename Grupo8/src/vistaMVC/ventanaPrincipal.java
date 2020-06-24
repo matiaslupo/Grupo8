@@ -1,18 +1,19 @@
 package vistaMVC;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
-
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 public class ventanaPrincipal extends JFrame {
 
-	private JPanel contentPane;
+private JPanel contentPane;
 	
 	// LABEL CON LA FECHA ACTUAL
 	private JLabel fechaLabel;
@@ -24,7 +25,7 @@ public class ventanaPrincipal extends JFrame {
 	private JButton quitarServicioBoton;
 	private JButton pagarBoton;
 	private JButton eptBoton;
-	private JButton afipBoton;
+	private JButton modificaServicioBoton;
 	// CONTROLADOR
 	private ActionListener actionlistener;
 	
@@ -46,50 +47,76 @@ public class ventanaPrincipal extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel);
 		
-		JButton agregarSocioBoton = new JButton("Agregar Socio");
+		agregarSocioBoton = new JButton("Agregar Socio");
 		panel.add(agregarSocioBoton);
+		this.agregarSocioBoton.setActionCommand("ABRIR AGREGAR SOCIO");
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1);
 		
-		JButton quitarSocioBoton = new JButton("Quitar Socio");
+		quitarSocioBoton = new JButton("Quitar Socio");
 		panel_1.add(quitarSocioBoton);
+		this.quitarSocioBoton.setActionCommand("ABRIR QUITAR SOCIO");
 		
 		JPanel panel_2 = new JPanel();
 		contentPane.add(panel_2);
 		
-		JButton buscarSocioBoton = new JButton("Buscar Socio");
+		buscarSocioBoton = new JButton("Buscar Socio");
 		panel_2.add(buscarSocioBoton);
+		this.buscarSocioBoton.setActionCommand("ABRIR BUSCAR SOCIO");
 		
 		JPanel panel_3 = new JPanel();
 		contentPane.add(panel_3);
 		
-		JButton agregarServicioBoton = new JButton("Agregar Servicio");
+		agregarServicioBoton = new JButton("Agregar Servicio");
 		panel_3.add(agregarServicioBoton);
-		
-		JPanel panel_4 = new JPanel();
-		contentPane.add(panel_4);
-		
-		JButton quitarServicioBoton = new JButton("Quitar Servicio");
-		panel_4.add(quitarServicioBoton);
-		
-		JPanel panel_5 = new JPanel();
-		contentPane.add(panel_5);
-		
-		JButton pagarBoton = new JButton("Pagar");
-		panel_5.add(pagarBoton);
-		
-		JPanel panel_6 = new JPanel();
-		contentPane.add(panel_6);
-		
-		JButton eptBoton = new JButton("EPT");
-		panel_6.add(eptBoton);
+		this.agregarServicioBoton.setActionCommand("ABRIR AGREGAR SERVICIO");
 		
 		JPanel panel_7 = new JPanel();
 		contentPane.add(panel_7);
 		
-		JButton afipBoton = new JButton("Afip");
-		panel_7.add(afipBoton);
+		modificaServicioBoton = new JButton("Modificar Servicio");
+		panel_7.add(modificaServicioBoton);
+		this.modificaServicioBoton.setActionCommand("ABRIR MODIFICAR SERVICIO");
+		
+		JPanel panel_4 = new JPanel();
+		contentPane.add(panel_4);
+		
+		quitarServicioBoton = new JButton("Quitar Servicio");
+		panel_4.add(quitarServicioBoton);
+		this.quitarServicioBoton.setActionCommand("ABRIR QUITAR SERVICIO");
+		
+		JPanel panel_5 = new JPanel();
+		contentPane.add(panel_5);
+		
+		pagarBoton = new JButton("Pagar");
+		panel_5.add(pagarBoton);
+		this.pagarBoton.setActionCommand("ABRIR PAGAR");
+		
+		JPanel panel_6 = new JPanel();
+		contentPane.add(panel_6);
+		
+		eptBoton = new JButton("EPT");
+		panel_6.add(eptBoton);
+		this.eptBoton.setActionCommand("EPT");
+		
+		this.setVisible(true);
+		
 	}
 
+
+	public void setActionlistener(ActionListener actionlistener) {
+		this.agregarServicioBoton.addActionListener(actionlistener);
+		this.modificaServicioBoton.addActionListener(actionlistener);
+		this.quitarServicioBoton.addActionListener(actionlistener);
+		this.agregarSocioBoton.addActionListener(actionlistener);
+		this.buscarSocioBoton.addActionListener(actionlistener);
+		this.quitarSocioBoton.addActionListener(actionlistener);
+		this.eptBoton.addActionListener(actionlistener);
+		this.pagarBoton.addActionListener(actionlistener);
+		this.actionlistener = actionlistener;
+	}
+	
+	
+	
 }

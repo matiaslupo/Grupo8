@@ -5,7 +5,7 @@ import personas.Persona;
 import servicios.Domicilio;
 
 
-public interface ISistema {
+public interface I_Sistema {
 	
 	public void agregarFacturas(Persona persona);
 	public void agregarServicio(String persona,String internet, int cantCel, int cantTel, int cantTV, Domicilio domicilio);
