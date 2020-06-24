@@ -7,11 +7,11 @@ import modelo.ColeccionGenerica;
 public class ListaFacturas extends ColeccionGenerica<I_Factura> implements I_ColeccionDeFacturas {
 
 	public ListaFacturas() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	public void agregarFactura(I_Factura factura) {
-		super.agregaElemento(factura);		
+	public void agregarFactura(I_Factura factura, int mes) {
+		super.agregaElemento(factura, mes);		
 	}
 
 	public void eliminarFactura(I_Factura factura) {
@@ -19,17 +19,32 @@ public class ListaFacturas extends ColeccionGenerica<I_Factura> implements I_Col
 	}
 
 	public void pagarFactura(I_Factura factura) {
-		// TODO Auto-generated method stub
-		
+				
 	}
 
+	/*
+	
 	public Iterator<I_Factura> getFacturaIterator() {
 		return super.getIterator();
-	}
+	} */
 
 	public int facturasSinPagar() {
-		return 0;
+		int cant= 0;
+		Iterator<I_Factura> facturas= super.getKeyIterator();
+		while (facturas.hasNext()) {
+			if (!facturas.next().isPagado())
+				cant++;
+		}
+		return cant;
 	}
 
-
+	public Object clone() {
+		ListaFacturas clonado= null;
+		try {
+			clonado = (ListaFacturas) super.clone();
+		} catch (CloneNotSupportedException e) {
+			// Siempre clonable
+		}
+		return clonado;		
+	}
 }

@@ -51,6 +51,24 @@ public abstract class Persona implements Cloneable{
 		this.nombre = nombre;
 	}
 	
+	
+	
+	public ArrayList<I_Contratable> getListaContrataciones() {
+		return listaContrataciones;
+	}
+
+	public void setListaContrataciones(ArrayList<I_Contratable> listaContrataciones) {
+		this.listaContrataciones = listaContrataciones;
+	}
+
+	public I_ColeccionDeFacturas getColeccionDeFacturas() {
+		return coleccionDeFacturas;
+	}
+
+	public void setColeccionDeFacturas(I_ColeccionDeFacturas coleccionDeFacturas) {
+		this.coleccionDeFacturas = coleccionDeFacturas;
+	}
+
 	/**
 	 *Metodo de clonacion condicional
 	 *<br>

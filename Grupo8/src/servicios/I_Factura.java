@@ -2,7 +2,7 @@ package servicios;
 
 import interfaces.I_Contratable;
 
-public interface I_Factura {
+public interface I_Factura extends Cloneable{
 	
 	boolean isPagado();
 	
