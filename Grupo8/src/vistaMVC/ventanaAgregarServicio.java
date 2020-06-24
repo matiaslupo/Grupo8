@@ -53,7 +53,7 @@ public class ventanaAgregarServicio extends JFrame implements KeyListener,MouseL
 
 	public ventanaAgregarServicio() {
 		setTitle("Agregar Servicio");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 493, 533);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

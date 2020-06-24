@@ -17,6 +17,7 @@ private JPanel contentPane;
 	
 	// LABEL CON EL MES ACTUAL
 	private JLabel mesActualLabel;
+
 	// BOTONES
 	private JButton agregarSocioBoton;
 	private JButton quitarSocioBoton;
@@ -112,5 +113,6 @@ private JPanel contentPane;
 	public void setMesActual(int mes) {
 		this.mesActualLabel.setText("Mes Actual: " + mes);
 	}
+	
 	
 }
