@@ -13,6 +13,8 @@ import interfaces.I_Pago;
 import servicios.Domicilio;
 import servicios.Factura;
 import servicios.I_ColeccionDeFacturas;
+import servicios.I_Factura;
+
 import servicios.Internet100;
 import servicios.Internet500;
 import servicios.ListaFacturas;
@@ -26,8 +28,11 @@ import servicios.Servicio;
 public abstract class Persona implements Cloneable{
 	
 	private String nombre;
-	private ArrayList<I_Contratable> listaContrataciones= new ArrayList<I_Contratable>();
-	private I_ColeccionDeFacturas coleccionDeFacturas;
+	protected ArrayList<I_Contratable> coleccionContrataciones;
+	protected I_ColeccionDeFacturas coleccionDeFacturas;
+	protected double totalSinP;
+	protected double totalConP;
+
     
 	/**
 	 * Constructor con un parametro para setear el nombre de la persona
@@ -37,6 +42,10 @@ public abstract class Persona implements Cloneable{
 	public Persona(String nombre) {
 		this.nombre = nombre;
 		this.coleccionDeFacturas= new ListaFacturas();
+		this.coleccionContrataciones= new ArrayList<I_Contratable>();
+		this.totalSinP=0;
+		this.totalConP=0;
+
 		
 	}
 
@@ -96,7 +105,8 @@ public abstract class Persona implements Cloneable{
 	 * @param iContratable : Parametro que sera agregado a nuestra factura
 	 */
 	public void nuevaContratacion(I_Contratable iContratable) {
-    	this.listaContrataciones.add(iContratable);
+    	this.coleccionContrataciones.add(iContratable);
+
     }
 	
 	/**
@@ -108,11 +118,12 @@ public abstract class Persona implements Cloneable{
 	 */
 	public int buscaContratacion(String domicilioPersona) { 
 		int res=0;
-		if (!this.listaContrataciones.isEmpty()) {
+		if (!this.coleccionContrataciones.isEmpty()) {
 			int i=0;
-			while(i<this.listaContrataciones.size() && this.listaContrataciones.get(i).getDomicilio().getDireccion().equals(domicilioPersona) ) 
+			while(i<this.coleccionContrataciones.size() && this.coleccionContrataciones.get(i).getDomicilio().getDireccion().equals(domicilioPersona) ) 
 				i++;
-			if (i<this.listaContrataciones.size())
+			if (i<this.coleccionContrataciones.size())
+
 				res=i;
 		}
 		return res;
@@ -131,7 +142,8 @@ public abstract class Persona implements Cloneable{
 		int cantCelulares=0,cantFijo=0,cantTV=0;									
 		accion=accion.toUpperCase();
 		servicio=servicio.toUpperCase();
-		I_Contratable contratable= this.listaContrataciones.get(pos);
+		I_Contratable contratable= this.coleccionContrataciones.get(pos);
+
 		while(contratable.isCelular() || contratable.isTelefono() || contratable.isTV_Cable()) { 
 			DecoratorAgregado decorador= (DecoratorAgregado) contratable;
 			if (contratable.isCelular()) {
@@ -183,7 +195,8 @@ public abstract class Persona implements Cloneable{
 			I_Contratable auxreemplazo= new Telefono(cantTV,reemplazo);
 			reemplazo=auxreemplazo;
 		}
-		this.listaContrataciones.set(pos, reemplazo);
+		this.coleccionContrataciones.set(pos, reemplazo);
+
 	}
 	
 	/**
@@ -193,7 +206,8 @@ public abstract class Persona implements Cloneable{
 	 * @param posicion: Parametro de tipo int que representa la posicion de dicha linea de contratacion dentro de la lista de contrataciones.
 	 */
 	public void eliminaContratacion(int posicion) {
-		this.listaContrataciones.remove(posicion);
+		this.coleccionContrataciones.remove(posicion);
+
 	}
 	
 	/**
@@ -202,11 +216,63 @@ public abstract class Persona implements Cloneable{
 	public String listarContrataciones() {
 		StringBuilder sb= new StringBuilder();
 		int i=0;
-		while(i<this.listaContrataciones.size()) {
-			sb.append("ID: " + this.listaContrataciones.get(i).getID()+" "+ this.listaContrataciones.get(i).toString()+"\n");
+		while(i<this.coleccionContrataciones.size()) {
+			sb.append("ID: " + this.coleccionContrataciones.get(i).getID()+" "+ this.coleccionContrataciones.get(i).toString()+"\n");
+
 			i++;
 		}
 		return sb.toString();	
 	}
 	
+	/**
+	 * Calcula el precio total a abonar aplicando el medio de pago
+	 * <b>Pre: </b> I_Contratable debe ser distinto de null <br>
+	 * <b>Post: </b> Se agrega una contratacion mas a la lista<br>
+	 * @param persona: Parametro de tipo Persona que representa al abonado de la factura
+	 * @param tipo: Parametro de tipo I_Pago que representa el medio de pago
+	 */
+	public void precioFinal(I_Pago tipo) {
+		double total=0;
+		for(int i=0;i<this.coleccionContrataciones.size();i++) {
+			total+=this.coleccionContrataciones.get(i).getPrecio();
+		}
+		this.totalSinP=total;
+		this.totalConP=this.aplicarPorcentaje(tipo, total);
+		
+	}
+
+	public ArrayList<I_Contratable> getColeccionContrataciones() {
+		return coleccionContrataciones;
+	}
+
+	public void setColeccionContrataciones(ArrayList<I_Contratable> coleccionContrataciones) {
+		this.coleccionContrataciones = coleccionContrataciones;
+	}
+
+	public I_ColeccionDeFacturas getColeccionDeFacturas() {
+		return coleccionDeFacturas;
+	}
+
+	public void setColeccionDeFacturas(I_ColeccionDeFacturas coleccionDeFacturas) {
+		this.coleccionDeFacturas = coleccionDeFacturas;
+	}
+
+	public double getTotalSinP() {
+		return totalSinP;
+	}
+
+	public void setTotalSinP(double totalSinP) {
+		this.totalSinP = totalSinP;
+	}
+
+	public double getTotalConP() {
+		return totalConP;
+	}
+
+	public void setTotalConP(double totalConP) {
+		this.totalConP = totalConP;
+	}
+	
+	
+
 }

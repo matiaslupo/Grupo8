@@ -3,6 +3,8 @@ package personas;
 import estados.SinContratacion;
 import interfaces.I_Pago;
 import interfaces.I_State;
+import servicios.I_ColeccionDeFacturas;
+
 
 /**
  * @author Grupo8
@@ -13,7 +15,8 @@ public class Fisica extends Persona {
 	private I_State estado;
 	private int DNI;
 	public static int contadorFvencidas=0; //contador de facturas vencidas/sin pagar
-	public static double  recargo=1;
+
+
 	
 	/**
 	 * Constructor  con dos parametros para setear el nombre y el documento  de la persona fisica

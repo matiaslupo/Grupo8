@@ -28,21 +28,6 @@ public class SinContratacion implements I_State {
 		
 	}
 
-	public void pagarFactura(Fisica abonado) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void contratarNuevoServicio(Fisica abonado) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void darDeBajaServicio(Fisica abonado) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 
 }

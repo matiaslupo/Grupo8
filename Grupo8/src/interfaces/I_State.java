@@ -1,13 +1,15 @@
 package interfaces;
 
 import personas.Fisica;
+import servicios.Domicilio;
 
 public interface I_State {
 	
-    public void pagarFactura(Fisica abonado);
+    public void pagarFactura(I_Pago tipo);
     
-	public void contratarNuevoServicio(Fisica abonado);
+	public void contratarNuevoServicio(I_Contratable contratacion);
 	
-	public void darDeBajaServicio(Fisica abonado);
+	public void darDeBajaServicio(String domicilio);
+
 
 }
