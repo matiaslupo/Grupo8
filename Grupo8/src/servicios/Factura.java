@@ -15,6 +15,7 @@ import personas.Persona;
  *Clase que representa una Factura
  */
 public class Factura implements Cloneable, I_Factura {
+
     private double totalSinP; //porcentaje ya que, dependiendo del tipo de pago se hace un incremento o descuento
     private double totalConP;
     private boolean pagado;
@@ -25,10 +26,12 @@ public class Factura implements Cloneable, I_Factura {
 	 * @param persona: Parametro de tipo Persona que representa al titular o abonado de la factura
 	 */
 	public Factura(Persona persona) {
+
 		this.totalConP=0;
 		this.totalSinP=0;
 		this.pagado= false;
 	}
+
 	
 	public double getTotalSinP() {
 		return totalSinP;
@@ -36,6 +39,7 @@ public class Factura implements Cloneable, I_Factura {
 	public double getTotalConP() {
 		return totalConP;
 	}
+
 	public boolean isPagado() {
 		return pagado;
 	}
@@ -182,11 +186,14 @@ public class Factura implements Cloneable, I_Factura {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-    public Object clone() throws CloneNotSupportedException 
+    public Object clone() 
     {
         Factura facturaClonada=null;
-        facturaClonada=(Factura) super.clone();
-        facturaClonada.persona=(Persona) this.persona.clone();
+        try {
+			facturaClonada=(Factura) super.clone();
+		} catch (CloneNotSupportedException e) {
+			// Facturas ahora son siempre clonables
+		}
         facturaClonada.listaContrataciones=(ArrayList<I_Contratable>) this.listaContrataciones.clone(); 
         facturaClonada.listaContrataciones.clear();
         for(int i=0;i<this.listaContrataciones.size();i++)
@@ -195,6 +202,8 @@ public class Factura implements Cloneable, I_Factura {
         
         
     }
+	
+	
 	/**
 	 * @return Devuelve toda la informacion detallada de la lista de contrataciones
 	 */

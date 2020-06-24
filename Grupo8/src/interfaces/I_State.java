@@ -11,4 +11,5 @@ public interface I_State {
 	
 	public void darDeBajaServicio(String domicilio);
 
+
 }

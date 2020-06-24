@@ -1,21 +1,40 @@
+
 package modelo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Set;
 
-public class ColeccionGenerica<K,T> {
+public class ColeccionGenerica<T extends Cloneable> implements Cloneable {
 
-	private HashMap<K,T> coleccion;
+	private HashMap<T, Integer> coleccion;
 	
 	public ColeccionGenerica() {
-		this.coleccion= new HashMap<K,T>();
+		this.coleccion= new HashMap<T, Integer>();
 	}
 	
-	public void agregaElemento(K dato,T elemento) {
-		this.coleccion.put(dato, elemento);
+	public void agregaElemento(T elemento, Integer valor) {
+		this.coleccion.put(elemento, valor);
 	}
 	
-	public Iterator<EntrySet<K,T>> getIterator(){
-		return this.coleccion.entrySet().iterator();
+	public void eliminarElemento(T elemento) {
+		this.coleccion.remove(elemento);
+	}
+	
+	public Iterator<T> getKeyIterator(){
+		return this.coleccion.keySet().iterator();
+	}
+	
+	public Object clone() throws CloneNotSupportedException {
+		ColeccionGenerica clonado= null;
+		clonado= (ColeccionGenerica) super.clone();
+		Iterator<T> keys= clonado.coleccion.keySet().iterator();
+		Iterator<Integer> values= clonado.coleccion.values().iterator();
+		clonado.coleccion.clear();
+		while (keys.hasNext() && values.hasNext()) {
+			
+		}
+		return clonado;
 	}
 }

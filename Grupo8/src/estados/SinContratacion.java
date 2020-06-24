@@ -27,6 +27,7 @@ public class SinContratacion implements I_State {
 		JOptionPane.showMessageDialog(null, "No puede dar de baja algun servicio aun", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
 		
 	}
+
 	
 
 }

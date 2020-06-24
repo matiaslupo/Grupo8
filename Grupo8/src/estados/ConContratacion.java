@@ -2,6 +2,7 @@ package estados;
 
 import interfaces.I_Contratable;
 import interfaces.I_Pago;
+
 import interfaces.I_State;
 import personas.Fisica;
 
@@ -20,6 +21,7 @@ public class ConContratacion implements I_State {
 		else {
 			abonado.precioFinal(tipo);
 			//falta setear el estado de pagado de la factura
+
 		}
 		
 	}

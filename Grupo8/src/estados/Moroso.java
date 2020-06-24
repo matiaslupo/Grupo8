@@ -11,6 +11,7 @@ public class Moroso implements I_State {
 
 	private Fisica abonado;
 	private double recargo=1.3;
+
 	
 	public Moroso(Fisica abonado) {
 		this.abonado = abonado;
@@ -24,11 +25,13 @@ public class Moroso implements I_State {
 	}
 
 	public void contratarNuevoServicio(I_Contratable contratacion) {
+
 		JOptionPane.showMessageDialog(null, "Tiene deudas,no puede contratar algun servicio!", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
 		
 	}
 
 	public void darDeBajaServicio(String domicilio) {
+
 		JOptionPane.showMessageDialog(null, "Tiene deudas,no puede dar de baja algun servicio!", "ADVERTENCIA", JOptionPane.WARNING_MESSAGE);
 		
 	}

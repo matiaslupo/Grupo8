@@ -14,6 +14,7 @@ import servicios.Domicilio;
 import servicios.Factura;
 import servicios.I_ColeccionDeFacturas;
 import servicios.I_Factura;
+
 import servicios.Internet100;
 import servicios.Internet500;
 import servicios.ListaFacturas;
@@ -31,6 +32,7 @@ public abstract class Persona implements Cloneable{
 	protected I_ColeccionDeFacturas coleccionDeFacturas;
 	protected double totalSinP;
 	protected double totalConP;
+
     
 	/**
 	 * Constructor con un parametro para setear el nombre de la persona
@@ -43,6 +45,7 @@ public abstract class Persona implements Cloneable{
 		this.coleccionContrataciones= new ArrayList<I_Contratable>();
 		this.totalSinP=0;
 		this.totalConP=0;
+
 		
 	}
 
@@ -57,6 +60,24 @@ public abstract class Persona implements Cloneable{
 		this.nombre = nombre;
 	}
 	
+	
+	
+	public ArrayList<I_Contratable> getListaContrataciones() {
+		return listaContrataciones;
+	}
+
+	public void setListaContrataciones(ArrayList<I_Contratable> listaContrataciones) {
+		this.listaContrataciones = listaContrataciones;
+	}
+
+	public I_ColeccionDeFacturas getColeccionDeFacturas() {
+		return coleccionDeFacturas;
+	}
+
+	public void setColeccionDeFacturas(I_ColeccionDeFacturas coleccionDeFacturas) {
+		this.coleccionDeFacturas = coleccionDeFacturas;
+	}
+
 	/**
 	 *Metodo de clonacion condicional
 	 *<br>
@@ -85,6 +106,7 @@ public abstract class Persona implements Cloneable{
 	 */
 	public void nuevaContratacion(I_Contratable iContratable) {
     	this.coleccionContrataciones.add(iContratable);
+
     }
 	
 	/**
@@ -101,6 +123,7 @@ public abstract class Persona implements Cloneable{
 			while(i<this.coleccionContrataciones.size() && this.coleccionContrataciones.get(i).getDomicilio().getDireccion().equals(domicilioPersona) ) 
 				i++;
 			if (i<this.coleccionContrataciones.size())
+
 				res=i;
 		}
 		return res;
@@ -120,6 +143,7 @@ public abstract class Persona implements Cloneable{
 		accion=accion.toUpperCase();
 		servicio=servicio.toUpperCase();
 		I_Contratable contratable= this.coleccionContrataciones.get(pos);
+
 		while(contratable.isCelular() || contratable.isTelefono() || contratable.isTV_Cable()) { 
 			DecoratorAgregado decorador= (DecoratorAgregado) contratable;
 			if (contratable.isCelular()) {
@@ -172,6 +196,7 @@ public abstract class Persona implements Cloneable{
 			reemplazo=auxreemplazo;
 		}
 		this.coleccionContrataciones.set(pos, reemplazo);
+
 	}
 	
 	/**
@@ -182,6 +207,7 @@ public abstract class Persona implements Cloneable{
 	 */
 	public void eliminaContratacion(int posicion) {
 		this.coleccionContrataciones.remove(posicion);
+
 	}
 	
 	/**
@@ -192,6 +218,7 @@ public abstract class Persona implements Cloneable{
 		int i=0;
 		while(i<this.coleccionContrataciones.size()) {
 			sb.append("ID: " + this.coleccionContrataciones.get(i).getID()+" "+ this.coleccionContrataciones.get(i).toString()+"\n");
+
 			i++;
 		}
 		return sb.toString();	
@@ -247,5 +274,5 @@ public abstract class Persona implements Cloneable{
 	}
 	
 	
-	
+
 }
