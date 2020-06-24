@@ -20,7 +20,7 @@ private JPanel contentPane;
 
 	// BOTONES
 	private JButton agregarSocioBoton;
-	private JButton quitarSocioBoton;
+	private JButton afipSocioBoton;
 	private JButton agregarServicioBoton; 
 	private JButton quitarServicioBoton;
 	private JButton pagarBoton;
@@ -51,13 +51,6 @@ private JPanel contentPane;
 		agregarSocioBoton = new JButton("Agregar Socio");
 		panel.add(agregarSocioBoton);
 		this.agregarSocioBoton.setActionCommand("ABRIR AGREGAR SOCIO");
-		
-		JPanel panel_1 = new JPanel();
-		contentPane.add(panel_1);
-		
-		quitarSocioBoton = new JButton("Quitar Socio");
-		panel_1.add(quitarSocioBoton);
-		this.quitarSocioBoton.setActionCommand("ABRIR QUITAR SOCIO");
 		
 		JPanel panel_3 = new JPanel();
 		contentPane.add(panel_3);
@@ -94,6 +87,13 @@ private JPanel contentPane;
 		panel_6.add(eptBoton);
 		this.eptBoton.setActionCommand("EPT");
 		
+		JPanel panel_1 = new JPanel();
+		contentPane.add(panel_1);
+		
+		afipSocioBoton = new JButton("Afip");
+		panel_1.add(afipSocioBoton);
+		this.afipSocioBoton.setActionCommand("AFIP");
+		
 		this.setVisible(true);
 		
 	}
@@ -104,7 +104,7 @@ private JPanel contentPane;
 		this.modificaServicioBoton.addActionListener(actionlistener);
 		this.quitarServicioBoton.addActionListener(actionlistener);
 		this.agregarSocioBoton.addActionListener(actionlistener);
-		this.quitarSocioBoton.addActionListener(actionlistener);
+		this.afipSocioBoton.addActionListener(actionlistener);
 		this.eptBoton.addActionListener(actionlistener);
 		this.pagarBoton.addActionListener(actionlistener);
 		this.actionlistener = actionlistener;
