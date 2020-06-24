@@ -6,23 +6,24 @@ import agregado.ContratableFactory;
 import excepciones.DomicilioInvalidoException;
 import excepciones.PersonaExistenteException;
 import excepciones.ServicioInternetInvalidoException;
-import interfaces.ISistema;
+import interfaces.I_Sistema;
 import interfaces.I_Pago;
 import personas.Persona;
 import servicios.Domicilio;
-import servicios.Factura;
+import servicios.Persona;
 
-public class SistemaContrataciones implements ISistema {
+public class SistemaContrataciones implements I_Sistema {
+	
 	private static SistemaContrataciones  instancia= null; //APLICO EL PATRON SINGLETON PUES SE INSTANCIA POR UNICA VEZ
-	private HashMap <String,Factura> listaFacturas=new HashMap<String,Factura>();
+	private HashMap <String,Persona> listaAbonados=new HashMap<String,Persona>();
 
     /**
-     * Constructor privado de SistemaContrataciones  pues aplicamos el patrón Singleton
+     * Constructor privado de SistemaContrataciones  pues aplicamos el patron Singleton
      */
 	private SistemaContrataciones () {}
 	
 	/**
-	 * Metodo estático para instanciar por única vez SistemaContrataciones 
+	 * Metodo estatico para instanciar por unica vez SistemaContrataciones 
 	 * @return devuelve la instancia de tipo SistemaContrataciones 
 	 */
 	public static SistemaContrataciones  getInstancia() { 
@@ -39,8 +40,8 @@ public class SistemaContrataciones implements ISistema {
 	 * @throws PersonaExistenteException: Se lanza en el caso que se encuentra que la persona ingresada sea repetida
 	 */
 	public void agregarFacturas(Persona persona) { 
-		if(!this.listaFacturas.containsKey(persona.getNombre())) 
-			this.listaFacturas.put(persona.getNombre(), new Factura(persona));
+		if(!this.listaAbonados.containsKey(persona.getNombre())) 
+			this.listaAbonados.put(persona.getNombre(), new Persona(persona));
 		else
 		{
 			try {
@@ -66,7 +67,7 @@ public class SistemaContrataciones implements ISistema {
 	 */
 	public void agregarServicio(String persona,String internet, int cantCel, int cantTel, int cantTV, Domicilio domicilio) { 
 		try {
-			this.listaFacturas.get(persona).nuevaContratacion(ContratableFactory.nuevoServicio(internet, cantCel, cantTel, cantTV, domicilio));
+			this.listaAbonados.get(persona).nuevaContratacion(ContratableFactory.nuevoServicio(internet, cantCel, cantTel, cantTV, domicilio));
 		} catch (ServicioInternetInvalidoException e) { //VACIO O NO EXISTE
 			System.out.println(e.getMessage());
 		} catch (DomicilioInvalidoException e) { //VACIO
@@ -79,24 +80,24 @@ public class SistemaContrataciones implements ISistema {
 	 * <b>Pre: </b> El parametro Direccion debe ser valido y que exista en la factura;El parametro Accion no debe ser una cadena vacia y debe existir; El parametro Servicio no debe ser una cadena vacia y debe existir<br>
 	 * <b>Post: </b> Se realiza el cambio de agregado del servicio<br>
 	 * @param direccion: Parametro de tipo String que representa a la direccion del servicio que desea cambiar
-	 * @param accion: Parametro de tipo String que representa a la acción que quiera realizar
+	 * @param accion: Parametro de tipo String que representa a la accion que quiera realizar
 	 * @param servicio: Parametro de tipo String que representa al servicio que desea modificar
 	 */
 	public void modificarAgregado(String persona,String direccion,String accion,String servicio) { //PRECONDICON DIRECCION VALIDA Y QUE EXISTA EN LA FACTURA 
-		int pos=this.listaFacturas.get(persona).buscaContratacion(direccion);
-		this.listaFacturas.get(persona).modificaContratacion(pos, accion, servicio);
+		int pos=this.listaAbonados.get(persona).buscaContratacion(direccion);
+		this.listaAbonados.get(persona).modificaContratacion(pos, accion, servicio);
 	}
 			
 	/**
-	 * Metodo para abonar el total según el medio de pago
+	 * Metodo para abonar el total segun el medio de pago
 	 * <b>Pre: </b> El parametro nombrePersona debe ser distinto de null o cadena vacia;El parametro tipo debe ser distinto de null y debe existir<br>
 	 * <b>Post: </b> Devuelve el valor del total calculado con el porcentaje aplicado<br>
 	 * @param nombrePersona: Parametro de tipo String que representa al abonado de la factura
 	 * @param tipo: Parametro de tipo I_Pago que representa al medio de pago
 	 */
 	public void abonar(String nombrePersona,I_Pago tipo) {
-		Persona persona=this.listaFacturas.get(nombrePersona).getPersona();
-		this.listaFacturas.get(nombrePersona).precioFinal(persona, tipo); 
+		Persona persona=this.listaAbonados.get(nombrePersona).getPersona();
+		this.listaAbonados.get(nombrePersona).precioFinal(persona, tipo); 
 	}
 	/**
 	 * Duplica la factura de una persona
@@ -106,10 +107,10 @@ public class SistemaContrataciones implements ISistema {
 	 * @throws CloneNotSupportedException: Se lanza en el caso de que no sea posible clonar
 	 */
 	public void duplicarFactura(String persona) {
-		Factura facturaOriginal=this.listaFacturas.get(persona);
-		Factura facturaDuplicada=null;
+		Persona facturaOriginal=this.listaAbonados.get(persona);
+		Persona facturaDuplicada=null;
 		try {
-			facturaDuplicada=(Factura) facturaOriginal.clone();
+			facturaDuplicada=(Persona) facturaOriginal.clone();
 			System.out.println("FACTURA DUPLICADA: \n"+this.listarFactura(facturaDuplicada.getPersona().getNombre()));
 			
 		} catch (CloneNotSupportedException e) {
@@ -126,12 +127,12 @@ public class SistemaContrataciones implements ISistema {
 	 */
 	public void eliminarContratacion(String nombrePersona,String domicilio) {
 		int posicion;
-		if(this.listaFacturas.containsKey(nombrePersona)) { 
-			posicion= this.listaFacturas.get(nombrePersona).buscaContratacion(domicilio);
+		if(this.listaAbonados.containsKey(nombrePersona)) { 
+			posicion= this.listaAbonados.get(nombrePersona).buscaContratacion(domicilio);
 			if (posicion>=0) { 
-				this.listaFacturas.get(nombrePersona).eliminaContratacion(posicion);
-				if (this.listaFacturas.get(nombrePersona).getListaContrataciones().isEmpty()) 
-					this.listaFacturas.remove(nombrePersona);
+				this.listaAbonados.get(nombrePersona).eliminaContratacion(posicion);
+				if (this.listaAbonados.get(nombrePersona).getListaContrataciones().isEmpty()) 
+					this.listaAbonados.remove(nombrePersona);
 			}
 		}
 	}
@@ -141,15 +142,15 @@ public class SistemaContrataciones implements ISistema {
 	 */
 	public String listarFactura(String persona) {
 		StringBuilder sb= new StringBuilder();
-		this.listaFacturas.get(persona).actualizaPrecio();
-		sb.append(this.listaFacturas.get(persona).getPersona().toString()+"\n");
-		sb.append(this.listaFacturas.get(persona).listarContrataciones());
-		if(this.listaFacturas.get(persona).getTotalConP()>=this.listaFacturas.get(persona).getTotalSinP())
-			sb.append("\n-->PRECIO TOTAL: " + this.listaFacturas.get(persona).getTotalConP()+"\n\n");
+		this.listaAbonados.get(persona).actualizaPrecio();
+		sb.append(this.listaAbonados.get(persona).getPersona().toString()+"\n");
+		sb.append(this.listaAbonados.get(persona).listarContrataciones());
+		if(this.listaAbonados.get(persona).getTotalConP()>=this.listaAbonados.get(persona).getTotalSinP())
+			sb.append("\n-->PRECIO TOTAL: " + this.listaAbonados.get(persona).getTotalConP()+"\n\n");
 		else
 		{
-			sb.append("\n-->PRECIO TOTAL SIN DESCUENTO: "+ this.listaFacturas.get(persona).getTotalSinP()+ "\n\n");
-			sb.append("\n-->PRECIO TOTAL CON DESCUENTO: "+ this.listaFacturas.get(persona).getTotalConP() + "\n\n");
+			sb.append("\n-->PRECIO TOTAL SIN DESCUENTO: "+ this.listaAbonados.get(persona).getTotalSinP()+ "\n\n");
+			sb.append("\n-->PRECIO TOTAL CON DESCUENTO: "+ this.listaAbonados.get(persona).getTotalConP() + "\n\n");
 		}
 		return sb.toString();
 	}
@@ -159,7 +160,7 @@ public class SistemaContrataciones implements ISistema {
 	public String listarFacturas() {
 		StringBuilder sb= new StringBuilder();
 		sb.append("FACTURAS:\n");
-		for(HashMap.Entry<String,Factura> pair: listaFacturas.entrySet()) {
+		for(HashMap.Entry<String,Persona> pair: listaAbonados.entrySet()) {
 			pair.getValue().actualizaPrecio();
 			sb.append(pair.getValue().getPersona().toString() + "\nLista de contrataciones: \n"+ pair.getValue().listarContrataciones()+ "\n");
 			if(pair.getValue().getTotalConP()>=pair.getValue().getTotalSinP())
