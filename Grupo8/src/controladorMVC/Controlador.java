@@ -57,7 +57,7 @@ public class Controlador implements ActionListener, Observer {
 			this.vistaAltaSocio =new ventanaAltaSocio();
 			this.vistaAltaSocio.setActionlistener(this);
 		}
-		else if (comando.equalsIgnoreCase("ABRIR QUITAR SOCIO")) { // Ventana Principal
+		else if (comando.equalsIgnoreCase("AFIP")) { // Ventana Principal
 			
 		}
 		else if (comando.equalsIgnoreCase("ABRIR AGREGAR SERVICIO")) { // Ventana Principal
@@ -81,7 +81,6 @@ public class Controlador implements ActionListener, Observer {
 		else if (comando.contentEquals("MODIFICAR SERVICIO")) {
 			this.vistaModificarServicio.setVisible(false);
 			//Operaciones
-			System.out.println("Nombre:\n" + this.vistaModificarServicio.getNombre());
 			//Cierro
 			this.vistaModificarServicio.dispose();
 			
