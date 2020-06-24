@@ -37,7 +37,7 @@ public class ventanaAltaSocio extends JFrame implements KeyListener,MouseListene
 	
 	public ventanaAltaSocio() {
 		setTitle("Agregar Socio");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 312, 339);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -170,16 +170,22 @@ public class ventanaAltaSocio extends JFrame implements KeyListener,MouseListene
 			boolean res2= (!this.nombreTextField.getText().equals("") && this.juridicaRadioButton.isSelected());
 			this.dniTextField.setEnabled(res1);
 			this.dniLabel.setEnabled(res1);
-			if (res1)
-				this.dniTextField.setText("");
-			else 
-				 this.dniTextField.setText("0");
-			this.cuitTextField.setEnabled(res2);
 			this.cuitLabel.setEnabled(res2);
-			if (res2)
-				  this.cuitTextField.setText("");
-			else 
-				 this.cuitTextField.setText("0");
+			this.cuitTextField.setEnabled(res2);
+			int dni=-1,cuit=-1;
+			try {
+			dni=Integer.parseInt(this.dniTextField.getText());
+			}
+			catch(NumberFormatException e) {
+				try {
+				cuit= Integer.parseInt(this.cuitTextField.getText());
+				}
+				catch(NumberFormatException e1) {}
+				this.aceptarBoton.setEnabled(res2 && cuit>0); 
+			}
+			
+			this.aceptarBoton.setEnabled(res1 && dni>0); 
+			
 		}
 	}
 
