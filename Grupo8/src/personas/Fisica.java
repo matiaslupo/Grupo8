@@ -1,6 +1,10 @@
 package personas;
 
+import java.util.Iterator;
+
+import estados.Moroso;
 import estados.SinContratacion;
+import interfaces.I_Contratable;
 import interfaces.I_Pago;
 import interfaces.I_State;
 import servicios.I_ColeccionDeFacturas;
@@ -46,18 +50,26 @@ public class Fisica extends Persona {
 	 */
 	@Override
 	 public Object clone() { 
-	        Object clon = null;
+	        Fisica clon = null;
 	        try
 	        {
-	            clon = super.clone();
+	            clon = (Fisica) super.clone();
 	        } catch (CloneNotSupportedException e)
 	        {
 	            //NUNCA entraremos a este bloque porque siempre sera clonable
 	            e.printStackTrace();
 	        }
+	        Iterator<I_Contratable> contratables= clon.listaContrataciones.iterator();
+	        clon.listaContrataciones.clear();
+	        while (contratables.hasNext()) {
+	        	clon.listaContrataciones.add(contratables.next());
+	        }
 	        return clon;
 	 }
 
+	public void setMoroso() {
+		this.estado= new Moroso(this);
+	}
 	
 	/**
 	 *Realiza el calculo del total a abonar la persona fisica aplicando el tipo de pago correspondiente(DOUBLE DISPATCH)<br>
@@ -91,5 +103,8 @@ public class Fisica extends Persona {
 		this.contadorFvencidas = contadorFvencidas;
 	}
 	
-	
+	/*public void avisarObservadores() {
+		setChanged();
+		notifyObservers();
+	}*/
 }

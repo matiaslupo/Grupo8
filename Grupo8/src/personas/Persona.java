@@ -4,6 +4,7 @@ package personas;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Observable;
 
 import agregado.Celular;
 import agregado.DecoratorAgregado;
@@ -14,8 +15,7 @@ import interfaces.I_Pago;
 import servicios.Domicilio;
 import servicios.Factura;
 import servicios.I_ColeccionDeFacturas;
-
-
+import servicios.I_Factura;
 import servicios.Internet100;
 import servicios.Internet500;
 import servicios.ListaFacturas;
@@ -26,12 +26,11 @@ import servicios.Servicio;
  * <br>
  * Clase abstracta que representa una Persona
  */
-public abstract class Persona implements Cloneable{
+public abstract class Persona extends Observable implements Cloneable{
 	
 	private String nombre;
 	protected ArrayList<I_Contratable> listaContrataciones;
 	protected I_ColeccionDeFacturas coleccionDeFacturas;
-	//protected HashMap<Integer,Factura> coleccionDeFacturas;
 	
 
     
@@ -43,7 +42,6 @@ public abstract class Persona implements Cloneable{
 	public Persona(String nombre) {
 		this.nombre = nombre;
 		this.coleccionDeFacturas= new ListaFacturas();
-		//this.coleccionDeFacturas= new HashMap<Integer,Factura>();
 		this.listaContrataciones= new ArrayList<I_Contratable>();
 	}
 
@@ -68,8 +66,14 @@ public abstract class Persona implements Cloneable{
 		this.listaContrataciones = listaContrataciones;
 	}
 
-	
+	public void agregarFactura(I_Factura factura, int mes) {
+		this.coleccionDeFacturas.agregarFactura(factura, mes);
+	}
 
+	public I_Factura buscarFactura(int mes) {
+		return this.coleccionDeFacturas.buscarFactura(mes);
+	}
+	
 	/**
 	 *Metodo de clonacion condicional
 	 *<br>
@@ -217,13 +221,13 @@ public abstract class Persona implements Cloneable{
 	}
 
 
-	//public I_ColeccionDeFacturas getColeccionDeFacturas() {
-	//	return coleccionDeFacturas;
-	//}
+	public I_ColeccionDeFacturas getColeccionDeFacturas() {
+		return coleccionDeFacturas;
+	}
 
-	//public void setColeccionDeFacturas(I_ColeccionDeFacturas coleccionDeFacturas) {
-	//	this.coleccionDeFacturas = coleccionDeFacturas;
-	//}
+	public void setColeccionDeFacturas(I_ColeccionDeFacturas coleccionDeFacturas) {
+		this.coleccionDeFacturas = coleccionDeFacturas;
+	}
 
 	
 	/*

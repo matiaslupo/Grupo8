@@ -34,11 +34,13 @@ public class GestorDeFacturacion implements Observer {
 		if (this.ept == ept) {
 			Iterator<Persona> personas= (Iterator<Persona>) arg1;
 			Persona actual= null;
+			int mes= ept.getMesActual() - 1; //El Gestor trabaja con el mes anterior al que actualiza el EPT
 			while (personas.hasNext()) {
 				actual= personas.next();
 				I_Factura factura= new Factura();
 				factura.setDetalles(actual.listarContrataciones());
 				//Codigo para asignar el precio a la factura
+				actual.agregarFactura(factura, mes);
 			}
 		}
 		else {

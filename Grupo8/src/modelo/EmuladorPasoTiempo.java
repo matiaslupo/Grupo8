@@ -11,11 +11,19 @@ public class EmuladorPasoTiempo extends Observable {
 	public EmuladorPasoTiempo() {
 		this.mesActual= 1;
 	}
+	
+	public int getMesActual() {
+		return mesActual;
+	}
+
+	public void setMesActual(int mesActual) {
+		this.mesActual = mesActual;
+	}
 
 	public void avanzarMes() {
+		this.mesActual++;
 		this.setChanged();
 		this.notifyObservers(SistemaContrataciones.getInstancia().getPersonas());
-		this.mesActual++;
 	}
 	
 }
