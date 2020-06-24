@@ -37,7 +37,7 @@ public class ventanaAltaSocio extends JFrame implements KeyListener,MouseListene
 	
 	public ventanaAltaSocio() {
 		setTitle("Agregar Socio");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 312, 339);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
