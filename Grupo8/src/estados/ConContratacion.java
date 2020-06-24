@@ -15,15 +15,11 @@ public class ConContratacion implements I_State {
 		this.abonado = abonado;
 	}
 
-	public void pagarFactura(I_Pago tipo) {
-		if(abonado.getContadorFvencidas()>=2) 
+	public void pagarFactura(I_Pago tipo,int mes) {
+		abonado.getColeccionDeFacturas().get(mes).precioFinal(abonado, tipo);
+		abonado.getColeccionDeFacturas().get(mes).setPagado(true);
+		if(abonado.getContadorFvencidas()>=2) // hay una forma mejor para buscar 
 			abonado.setEstado(new Moroso(abonado));
-		else {
-			abonado.precioFinal(tipo);
-			//falta setear el estado de pagado de la factura
-
-		}
-		
 	}
 
 	public void contratarNuevoServicio(I_Contratable contratacion) {
@@ -32,6 +28,8 @@ public class ConContratacion implements I_State {
 
 	public void darDeBajaServicio(String domicilio) {
 		abonado.eliminaContratacion(abonado.buscaContratacion(domicilio));
+		if(abonado.getListaContrataciones().size()==0) //no hay mas contrataciones, paso al estado Sin contratacion
+			abonado.setEstado(new SinContratacion(abonado));
 	}
 
 
