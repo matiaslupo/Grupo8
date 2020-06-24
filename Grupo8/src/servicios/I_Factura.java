@@ -15,6 +15,8 @@ public interface I_Factura extends Cloneable{
 	
 	boolean isPagado();
 	
+	void setPagado(boolean valor);
+	
 	void pagar();
 	
 	void setDetalles(String detalles);
