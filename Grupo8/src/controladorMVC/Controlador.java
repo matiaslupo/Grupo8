@@ -7,6 +7,7 @@ import java.util.Observer;
 
 import javax.swing.JOptionPane;
 import ModeloMVC.SistemaContrataciones;
+import estados.ActualizadorDeEstado;
 import excepciones.NoPuedeContratarException;
 import excepciones.NoPuedeDarDeBajaException;
 import excepciones.NoPuedePagarException;
@@ -46,6 +47,7 @@ public class Controlador implements ActionListener, Observer {
 		this.vistaPrincipal.setMesActual(1);
 		this.ept.addObserver(this);
 		this.gestor=new GestorDeFacturacion();
+		this.gestor.setNombre("Controlador");
 	}
 
 	public void update(Observable arg0, Object arg1) {

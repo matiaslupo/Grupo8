@@ -34,6 +34,7 @@ public class SistemaContrataciones implements I_Sistema {
 		this.emPasoTiempo= new EmuladorPasoTiempo();
 		this.gestFact= new GestorDeFacturacion();
 		this.gestFact.agregarObservable(this.emPasoTiempo);
+		this.gestFact.setNombre("Sistema");
 		this.actualizador= new ActualizadorDeEstado();
 		this.actualizador.agregarObservable(this.emPasoTiempo);		
 	}
