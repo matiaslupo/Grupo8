@@ -156,6 +156,7 @@ public class ventanaModificarServicio extends JFrame implements KeyListener, Mou
 		this.aceptarBoton.setActionCommand("MODIFICAR SERVICIO");
 		
 		this.setVisible(true);
+		this.setMinimumSize(getSize());
 	}
 
 
