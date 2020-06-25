@@ -7,7 +7,6 @@ import java.util.Observer;
 
 import javax.swing.JOptionPane;
 import ModeloMVC.SistemaContrataciones;
-import estados.ActualizadorDeEstado;
 import excepciones.NoPuedeContratarException;
 import excepciones.NoPuedeDarDeBajaException;
 import excepciones.NoPuedePagarException;
