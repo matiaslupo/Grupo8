@@ -37,6 +37,10 @@ public class SistemaContrataciones implements I_Sistema {
 		this.actualizador.agregarObservable(this.emPasoTiempo);		
 	}
 	
+	public EmuladorPasoTiempo getEPT() {
+		return this.emPasoTiempo;
+	}
+	
 	/**
 	 * Metodo estatico para instanciar por unica vez SistemaContrataciones 
 	 * @return devuelve la instancia de tipo SistemaContrataciones 

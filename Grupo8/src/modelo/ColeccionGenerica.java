@@ -34,10 +34,17 @@ public class ColeccionGenerica<T extends Cloneable> implements Cloneable {
 		return this.coleccion.get(valor);
 	}
 	/**
-	 * @return devuelve el iterator de la coleccion generica
+	 * @return devuelve el iterator de la clase de la coleccion generica
 	 */
 	public Iterator<T> getValuesIterator(){
 		return this.coleccion.values().iterator();
+	}
+	/**
+	 * @return devuelve el iterator de la llave de la coleccion generica
+	 */
+	
+	public Iterator<Integer> getKeyIterator(){
+		return this.coleccion.keySet().iterator();
 	}
 	/**
 	 * Metodo que realiza la clonacion de la coleccion generica
@@ -45,7 +52,7 @@ public class ColeccionGenerica<T extends Cloneable> implements Cloneable {
 	public Object clone() throws CloneNotSupportedException {
 		ColeccionGenerica clonado= null;
 		clonado= (ColeccionGenerica) super.clone();
-		Iterator<Integer> keys= clonado.coleccion.keySet().iterator();
+		Iterator<T> keys= clonado.coleccion.keySet().iterator();
 		Iterator<T> values= clonado.coleccion.values().iterator();
 		clonado.coleccion.clear();
 		while (keys.hasNext() && values.hasNext()) {

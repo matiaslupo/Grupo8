@@ -15,6 +15,7 @@ import mediospagos.PagoCheque;
 import mediospagos.PagoEfectivo;
 import mediospagos.PagoTarjeta;
 import modelo.EmuladorPasoTiempo;
+import modelo.GestorDeFacturacion;
 import personas.Fisica;
 import personas.Juridica;
 import servicios.Domicilio;
@@ -36,13 +37,15 @@ public class Controlador implements ActionListener, Observer {
 	private ventanaQuitarServicio vistaQuitarServicio;
 	private Observable ept;
 	private SistemaContrataciones sistema= SistemaContrataciones.getInstancia();
+	private GestorDeFacturacion gestor;
 	
 	public Controlador() {
 		vistaPrincipal= new ventanaPrincipal();
 		vistaPrincipal.setActionlistener(this);
-		this.ept= new EmuladorPasoTiempo();
+		this.ept= sistema.getEmPasoTiempo();
 		this.vistaPrincipal.setMesActual(1);
 		this.ept.addObserver(this);
+		this.gestor=new GestorDeFacturacion();
 	}
 
 	public void update(Observable arg0, Object arg1) {
@@ -103,7 +106,9 @@ public class Controlador implements ActionListener, Observer {
 		}
 		else if (comando.equalsIgnoreCase("EPT")) { // Ventana Principal
 			EmuladorPasoTiempo obj= (EmuladorPasoTiempo)this.ept;
+			gestor.agregarObservable(obj);
 			obj.avanzarMes();
+			System.out.println(sistema.listarAbonados());
 		}
 		else if (comando.contentEquals("ABRIR PAGAR")) { // Ventana Principal
 			this.vistaPagar= new ventanaPagar();

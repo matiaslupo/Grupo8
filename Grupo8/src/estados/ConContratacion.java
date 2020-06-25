@@ -36,7 +36,7 @@ public class ConContratacion implements I_State  {
 	public void pagarFactura(I_Pago tipo,int mes) {
 		I_Factura factura=abonado.getColeccionDeFacturas().buscarFactura(mes);
 		factura.setPagado(true);
-		factura.setTotalConP(factura.getTotalConP()*abonado.aplicarPorcentaje(tipo, factura.getTotalConP()));
+		factura.setTotalConP(abonado.aplicarPorcentaje(tipo, factura.getTotalConP()));
 	}
 	/**
 	 * Se agrega una nueva contratacion a la coleccion de contrataciones

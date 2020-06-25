@@ -41,9 +41,9 @@ public interface I_Sistema {
 	 */
 	public void eliminarContratacion(String nombrePersona,String domicilio) throws NoPuedeDarDeBajaException;
 	/**
-	 * Metodo para listar facturas.<br>	
+	 * Metodo para listar abonados.<br>	
 	 */
-	public String listarFacturas();
+	public String listarAbonados();
 	/**
 	 * Metodo para listar factura.<br>	
 	 */

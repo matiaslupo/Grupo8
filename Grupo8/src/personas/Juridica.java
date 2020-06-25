@@ -32,7 +32,7 @@ public class Juridica extends Persona {
 		CUIT = cUIT;
 	}
 	/**
-	 *Metodo para la clonacion de persona juridica,en este caso, como no será clonable siempre lanza una excepción
+	 *Metodo para la clonacion de persona juridica,en este caso, como no sera clonable siempre lanza una excepción
 	 */
 	@Override
     public Object clone() throws CloneNotSupportedException { 
@@ -73,4 +73,5 @@ public class Juridica extends Persona {
 		factura.setTotalConP(factura.getTotalConP()*this.aplicarPorcentaje(tipo,factura.getTotalConP()));
 		
 	}
+
 }

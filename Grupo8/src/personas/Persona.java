@@ -37,6 +37,9 @@ public abstract class Persona implements Cloneable{
 		this.coleccionDeFacturas= new ListaFacturas();
 		this.listaContrataciones= new ArrayList<I_Contratable>();
 	}
+	
+	
+	
 	public String getNombre() {
 		return nombre;
 	}

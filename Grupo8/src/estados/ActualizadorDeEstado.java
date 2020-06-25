@@ -18,10 +18,10 @@ public class ActualizadorDeEstado implements Observer {
 	
 	public ActualizadorDeEstado() {}
 	/**
-	 * que hace...
-	 * <b>Pre: </b>  <br>
-	 * <b>Post: </b> <br>
-	 * @param ept: Parametro de tipo EmuladorPasoTiempo para .......
+	 * Agrega Observable a la lista de los Observers 
+	 * <b>Pre: </b> ept debe ser distinto de null<br>
+	 * <b>Post: </b> agregado el Observable<br>
+	 * @param ept: Parametro de tipo EmuladorPasoTiempo para setear el mismo
 	 */
 	public void agregarObservable(EmuladorPasoTiempo ept) {
 		ept.addObserver(this);
@@ -37,12 +37,19 @@ public class ActualizadorDeEstado implements Observer {
 
 	public void update(Observable arg0, Object arg1) {
 		if (arg0 == ept && arg1 != null) {
+			System.out.println("Entra if Actualizador");
 			Iterator<Persona> personas= (Iterator<Persona>) arg1;
+			if (!personas.hasNext()) System.out.println("Actualzador no recibio personas");
 			Persona actual= null;
 			while (personas.hasNext()) {
 				actual= personas.next();
+				System.out.println("Chequea persona " + actual.getNombre());
+				
+				if (actual instanceof Fisica) System.out.println(actual.getNombre() + " es fisica"); else System.out.println(actual.getNombre() + " no es fisica");
+				
 				if (actual instanceof Fisica && actual.getColeccionDeFacturas().facturasSinPagar() > 1) {
 					Fisica fisica= (Fisica) actual;
+					System.out.println(fisica.getNombre() + " pasa a moroso");
 					fisica.setMoroso();
 				}
 			}

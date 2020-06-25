@@ -36,7 +36,7 @@ public class Moroso implements I_State {
 	public void pagarFactura(I_Pago tipo,int mes) { //SE SUPONE QUE ES FALSE PAGADO
 		I_Factura factura=abonado.getColeccionDeFacturas().buscarFactura(mes);
 		factura.pagar();
-		factura.setTotalConP(factura.getTotalConP()*abonado.aplicarPorcentaje(tipo, factura.getTotalConP()));
+		factura.setTotalConP(abonado.aplicarPorcentaje(tipo, factura.getTotalConP()));
 		factura.setTotalConP(factura.getTotalConP()*1.3); //le aplico el recargo
 		factura.setTotalSinP(factura.getTotalSinP()*1.3);
 		if(abonado.getColeccionDeFacturas().facturasSinPagar()<2) //si tiene menos de dos facturas sin pagar, voy al otro estado
