@@ -1,6 +1,8 @@
 package personas;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import agregado.Celular;
 import agregado.DecoratorAgregado;
 import agregado.TV_Cable;
@@ -11,6 +13,7 @@ import excepciones.NoPuedePagarException;
 import interfaces.I_Contratable;
 import interfaces.I_Pago;
 import servicios.Domicilio;
+import servicios.Factura;
 import servicios.I_ColeccionDeFacturas;
 import servicios.Internet100;
 import servicios.Internet500;
@@ -37,9 +40,6 @@ public abstract class Persona implements Cloneable{
 		this.coleccionDeFacturas= new ListaFacturas();
 		this.listaContrataciones= new ArrayList<I_Contratable>();
 	}
-	
-	
-	
 	public String getNombre() {
 		return nombre;
 	}
@@ -205,5 +205,27 @@ public abstract class Persona implements Cloneable{
 	}
 	public abstract void pagar(I_Pago tipo,int mes) throws NoPuedePagarException;
 	
+	public String listarFacturas() {
+		StringBuilder sb= new StringBuilder();
+		Factura actualF;
+		Iterator iteratorFactura=this.getColeccionDeFacturas().getFacturaIterator();
+		Iterator iteratorMes=this.getColeccionDeFacturas().getMesIterator();
+		while(iteratorMes.hasNext() && iteratorFactura.hasNext()) {
+			actualF=(Factura) iteratorFactura.next();
+			sb.append("FACTURA: \n");
+			sb.append("MES NUMERO: "+ iteratorMes.next()+"\n");
+			sb.append("Lista de contrataciones: \n"+ actualF.getDetalles());
+			if(actualF.isPagado()==true) {
+				sb.append("PAGADA\n");
+				sb.append("PRECIO ORIGINAL: $"+ actualF.getTotalSinP()+"\n");
+				sb.append("PRECIO PAGADO APLICANDO DESCUENTO/RECARGO: $" + actualF.getTotalConP()+"\n");
+			}
+			else {
+				sb.append("NO PAGADA\n");
+				sb.append("PRECIO ORIGINAL: $"+ actualF.getTotalSinP()+"\n");
+			}
 
+	    }
+		return sb.toString();
+	}
 }

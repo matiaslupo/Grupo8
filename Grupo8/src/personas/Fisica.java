@@ -105,7 +105,6 @@ public class Fisica extends Persona {
 	public void eliminarContratacion(String domicilio) throws NoPuedeDarDeBajaException {
 		this.estado.darDeBajaServicio(domicilio);		
 	}
-
 	
 	
 	

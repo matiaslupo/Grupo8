@@ -2,6 +2,7 @@ package ModeloMVC;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Observable;
 
 import agregado.ContratableFactory;
 import estados.ActualizadorDeEstado;
@@ -35,10 +36,6 @@ public class SistemaContrataciones implements I_Sistema {
 		this.gestFact.agregarObservable(this.emPasoTiempo);
 		this.actualizador= new ActualizadorDeEstado();
 		this.actualizador.agregarObservable(this.emPasoTiempo);		
-	}
-	
-	public EmuladorPasoTiempo getEPT() {
-		return this.emPasoTiempo;
 	}
 	
 	/**
@@ -153,33 +150,17 @@ public class SistemaContrataciones implements I_Sistema {
 	 * @return Devuelve String que imprime la factura de un abonado
 	 */
 	public String listarFactura(String persona) {
-		StringBuilder sb= new StringBuilder();
-		this.listaAbonados.get(persona).actualizaPrecio();
-		sb.append(this.listaAbonados.get(persona).getPersona().toString()+"\n");
-		sb.append(this.listaAbonados.get(persona).listarContrataciones());
-		if(this.listaAbonados.get(persona).getTotalConP()>=this.listaAbonados.get(persona).getTotalSinP())
-			sb.append("\n-->PRECIO TOTAL: " + this.listaAbonados.get(persona).getTotalConP()+"\n\n");
-		else
-		{
-			sb.append("\n-->PRECIO TOTAL SIN DESCUENTO: "+ this.listaAbonados.get(persona).getTotalSinP()+ "\n\n");
-			sb.append("\n-->PRECIO TOTAL CON DESCUENTO: "+ this.listaAbonados.get(persona).getTotalConP() + "\n\n");
-		}
-		return sb.toString();
+		return "sifi";
 	}
 	/**
 	 * @return Devuelve String de toda la informacion detallada de las facturas
 	 */
-	public String listarFacturas() {
+	public String listarAbonados() {
 		StringBuilder sb= new StringBuilder();
-		sb.append("FACTURAS:\n");
 		for(HashMap.Entry<String,Persona> pair: listaAbonados.entrySet()) {
-			sb.append(pair.getValue().getPersona().toString() + "\nLista de contrataciones: \n"+ pair.getValue().listarContrataciones()+ "\n");
-			if(pair.getValue().getTotalConP()>=pair.getValue().getTotalSinP())
-				sb.append("\n--> PRECIO TOTAL: " + pair.getValue().getTotalConP()+"\n\n");
-			else {
-				sb.append("\n--> PRECIO TOTAL SIN DESCUENTO: "+ pair.getValue().getTotalSinP()+ "\n\n");
-				sb.append("\n--> PRECIO TOTAL CON DESCUENTO: "+ pair.getValue().getTotalConP() + "\n\n");
-			}
+			sb.append("ABONADO: "+ pair.getKey()+"\n");
+			sb.append(pair.getValue().listarFacturas());
+			sb.append("---------------------------------------------------------------\n");
 		}
 		return sb.toString();
 	}
@@ -188,5 +169,17 @@ public class SistemaContrataciones implements I_Sistema {
 		this.listaAbonados.get(nombrePersona).pagar(tipo, mes);
 		
 	}
+
+	public EmuladorPasoTiempo getEmPasoTiempo() {
+		return emPasoTiempo;
+	}
+
+	public void setEmPasoTiempo(EmuladorPasoTiempo emPasoTiempo) {
+		this.emPasoTiempo = emPasoTiempo;
+	}
+
+	
+
+	
 
 }
