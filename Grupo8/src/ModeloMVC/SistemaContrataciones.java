@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import agregado.ContratableFactory;
+import estados.ActualizadorDeEstado;
 import excepciones.DomicilioInvalidoException;
 import excepciones.PersonaExistenteException;
 import excepciones.ServicioInternetInvalidoException;
 import interfaces.I_Sistema;
 import modelo.EmuladorPasoTiempo;
+import modelo.GestorDeFacturacion;
 import interfaces.I_Pago;
 import personas.Persona;
 import servicios.Domicilio;
@@ -18,11 +20,19 @@ public class SistemaContrataciones implements I_Sistema {
 	
 	private static SistemaContrataciones  instancia= null; //APLICO EL PATRON SINGLETON PUES SE INSTANCIA POR UNICA VEZ
 	private HashMap <String,Persona> listaAbonados=new HashMap<String,Persona>();
+	private EmuladorPasoTiempo emPasoTiempo;
+	private GestorDeFacturacion gestFact;
+	private ActualizadorDeEstado actualizador;
 
     /**
      * Constructor privado de SistemaContrataciones  pues aplicamos el patron Singleton
      */
 	private SistemaContrataciones () {
+		this.emPasoTiempo= new EmuladorPasoTiempo();
+		this.gestFact= new GestorDeFacturacion();
+		this.gestFact.agregarObservable(this.emPasoTiempo);
+		this.actualizador= new ActualizadorDeEstado();
+		this.actualizador.agregarObservable(this.emPasoTiempo);		
 	}
 	
 	/**
