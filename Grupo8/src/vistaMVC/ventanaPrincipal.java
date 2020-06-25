@@ -95,6 +95,7 @@ private JPanel contentPane;
 		this.afipSocioBoton.setActionCommand("AFIP");
 		
 		this.setVisible(true);
+		this.setMaximumSize(this.getSize());
 		
 	}
 

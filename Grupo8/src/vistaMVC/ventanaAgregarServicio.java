@@ -256,6 +256,7 @@ public class ventanaAgregarServicio extends JFrame implements KeyListener,MouseL
 		this.quinientosMBRadioButton.addMouseListener(this);
 		
 		this.setVisible(true);
+		this.setMinimumSize(getSize());
 	}
 
 	public void keyPressed(KeyEvent arg0) {}

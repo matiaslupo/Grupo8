@@ -115,6 +115,7 @@ public class ventanaPagar extends JFrame implements KeyListener,MouseListener {
 		this.efectivoRadioButton.addMouseListener(this);
 		this.tarjetaRadioButton.addMouseListener(this);
 		
+		this.setMinimumSize(getSize());
 		this.setVisible(true);
 	}
 

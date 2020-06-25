@@ -120,6 +120,7 @@ public class ventanaAltaSocio extends JFrame implements KeyListener,MouseListene
 		this.aceptarBoton.setActionCommand("AGREGAR SOCIO");
 		
 		this.setVisible(true);
+		this.setMinimumSize(getSize());
 		
 		this.fisicaRadioButton.addMouseListener(this);
 		this.juridicaRadioButton.addMouseListener(this);

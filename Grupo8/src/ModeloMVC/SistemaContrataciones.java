@@ -54,7 +54,7 @@ public class SistemaContrataciones implements I_Sistema {
 	 */
 	public void agregarFacturas(Persona persona) { 
 		if(!this.listaAbonados.containsKey(persona.getNombre())) 
-			this.listaAbonados.put(persona.getNombre(), new Persona(persona));
+			this.listaAbonados.put(persona.getNombre(), persona);
 		else
 		{
 			try {
@@ -108,9 +108,9 @@ public class SistemaContrataciones implements I_Sistema {
 	 * @param nombrePersona: Parametro de tipo String que representa al abonado de la factura
 	 * @param tipo: Parametro de tipo I_Pago que representa al medio de pago
 	 */
-	public void abonar(String nombrePersona,I_Pago tipo) {
-		Persona persona=this.listaAbonados.get(nombrePersona).getPersona();
-		this.listaAbonados.get(nombrePersona).precioFinal(persona, tipo); 
+	public void abonar(String nombrePersona,I_Pago tipo,int mes) {
+		Persona persona=this.listaAbonados.get(nombrePersona);
+		this.listaAbonados.get(nombrePersona).getColeccionDeFacturas().buscarFactura(mes);
 	}
 	/**
 	 * Duplica la factura de una persona
@@ -124,7 +124,7 @@ public class SistemaContrataciones implements I_Sistema {
 		Persona facturaDuplicada=null;
 		try {
 			facturaDuplicada=(Persona) facturaOriginal.clone();
-			System.out.println("FACTURA DUPLICADA: \n"+this.listarFactura(facturaDuplicada.getPersona().getNombre()));
+			System.out.println("FACTURA DUPLICADA: \n"+this.listarFactura(facturaDuplicada.getNombre()));
 			
 		} catch (CloneNotSupportedException e) {
 			System.out.println("Error al clonar, la persona es juridica");
