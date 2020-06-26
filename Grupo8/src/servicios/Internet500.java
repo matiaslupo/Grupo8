@@ -1,9 +1,11 @@
 package servicios;
 
+import java.io.Serializable;
+
 /**
  * Clase para el tipo de Servicio Internet500
  */
-public class Internet500 extends Servicio {
+public class Internet500 extends Servicio implements Serializable {
 
 	/**
 	 * Constuctor para un Servicio de tipo Internet500 <br>

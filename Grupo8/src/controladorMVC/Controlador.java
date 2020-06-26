@@ -95,7 +95,7 @@ public class Controlador implements ActionListener, Observer {
 			this.vistaAltaSocio =new ventanaAltaSocio();
 			this.vistaAltaSocio.setActionlistener(this);
 		}
-		else if (comando.equalsIgnoreCase("AFIP")) { // Ventana Principal
+		else if(comando.equalsIgnoreCase("AFIP")) { // Ventana Principal
 			
 		}
 		else if (comando.equalsIgnoreCase("ABRIR AGREGAR SERVICIO")) { // Ventana Principal

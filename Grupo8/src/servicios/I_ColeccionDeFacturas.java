@@ -17,7 +17,6 @@ public interface I_ColeccionDeFacturas {
 	
 	Iterator<I_Factura> getFacturaIterator();
 	
-	Iterator<Integer> getMesIterator();
 	
 	int facturasSinPagar();
 	

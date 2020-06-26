@@ -2,6 +2,8 @@ package estados;
 
 
 
+import java.io.Serializable;
+
 import excepciones.NoPuedeContratarException;
 import interfaces.I_Contratable;
 import interfaces.I_Pago;
@@ -15,7 +17,7 @@ import servicios.I_Factura;
  *<br>
  *Estado de I_State para los abonados de tipo Fisica que ya tengan alguna/as contrataciones y sin deudas
  */
-public class ConContratacion implements I_State  {
+public class ConContratacion implements I_State,Serializable {
 
 	private Fisica abonado;
 	/**

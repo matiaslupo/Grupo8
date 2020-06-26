@@ -1,14 +1,14 @@
 
 package servicios;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
 import modelo.ColeccionGenerica;
 
-public class ListaFacturas extends ColeccionGenerica<I_Factura> implements I_ColeccionDeFacturas {
+public class ListaFacturas extends ColeccionGenerica<I_Factura> implements I_ColeccionDeFacturas,Serializable {
 
 	public ListaFacturas() {
-		super();
 	}
 
 	public void agregarFactura(I_Factura factura, int mes) {
@@ -46,8 +46,6 @@ public class ListaFacturas extends ColeccionGenerica<I_Factura> implements I_Col
 		return clonado;		
 	}
 
-	public Iterator<Integer> getMesIterator() {
-		return super.getKeyIterator();
-	}
+	
 	
 }

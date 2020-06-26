@@ -2,6 +2,8 @@ package estados;
 
 
 
+import java.io.Serializable;
+
 import excepciones.NoPuedeContratarException;
 import excepciones.NoPuedeDarDeBajaException;
 import excepciones.NoPuedePagarException;
@@ -15,7 +17,7 @@ import personas.Fisica;
  *<br>
  *Estado de I_State para los abonados de tipo Fisica que no tienen ninguna contratacion
  */
-public class SinContratacion implements I_State {
+public class SinContratacion implements I_State,Serializable {
 
 	private Fisica abonado;
 	/**

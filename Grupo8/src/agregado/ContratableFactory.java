@@ -1,5 +1,7 @@
 package agregado;
 
+import java.io.Serializable;
+
 import excepciones.DomicilioInvalidoException; 
 import excepciones.ServicioInternetInvalidoException;
 import interfaces.I_Contratable;
@@ -12,7 +14,7 @@ import servicios.Internet500;
  * <br>
  * Clase para crear nuevos Servicios utilizando el patron Factory.
  */
-public class ContratableFactory {
+public class ContratableFactory implements Serializable {
 
 	/**	 
 	 * Metodo para crear un nuevo Servicio<br>

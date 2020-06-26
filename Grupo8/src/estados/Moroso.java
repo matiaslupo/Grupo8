@@ -2,6 +2,8 @@ package estados;
 
 
 
+import java.io.Serializable;
+
 import excepciones.NoPuedeContratarException;
 import excepciones.NoPuedeDarDeBajaException;
 import interfaces.I_Contratable;
@@ -15,7 +17,7 @@ import servicios.I_Factura;
  *<br>
  *Estado de I_State para los abonados de tipo Fisica que tienen dos o mas facturas consecutivas sin pagar
  */
-public class Moroso implements I_State {
+public class Moroso implements I_State,Serializable {
 
 	private Fisica abonado;
 	/**

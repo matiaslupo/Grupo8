@@ -1,5 +1,7 @@
 package agregado;
 
+import java.io.Serializable;
+
 import interfaces.I_Contratable;
 import servicios.Domicilio;
 
@@ -8,7 +10,7 @@ import servicios.Domicilio;
  * <br>
  * Clase para aniadir nuevos agregados al Servicio, utilizando el patron Decorator
  */
-public abstract class DecoratorAgregado implements I_Contratable {
+public abstract class DecoratorAgregado implements I_Contratable,Serializable{
 	
 	private I_Contratable contratable;
 	private int cantLineas;

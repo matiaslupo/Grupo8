@@ -1,6 +1,7 @@
 
 package modelo;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
 /**
@@ -8,7 +9,7 @@ import java.util.Iterator;
  *<br>
  *Coleccion generica
  */
-public class ColeccionGenerica<T extends Cloneable> implements Cloneable {
+public class ColeccionGenerica<T extends Cloneable> implements Cloneable,Serializable {
 
 	private HashMap<Integer,T> coleccion;
 	
@@ -39,13 +40,7 @@ public class ColeccionGenerica<T extends Cloneable> implements Cloneable {
 	public Iterator<T> getValuesIterator(){
 		return this.coleccion.values().iterator();
 	}
-	/**
-	 * @return devuelve el iterator de la llave de la coleccion generica
-	 */
 	
-	public Iterator<Integer> getKeyIterator(){
-		return this.coleccion.keySet().iterator();
-	}
 	/**
 	 * Metodo que realiza la clonacion de la coleccion generica
 	 */
@@ -60,4 +55,12 @@ public class ColeccionGenerica<T extends Cloneable> implements Cloneable {
 		}
 		return clonado;
 	}
+	public void setColeccion(HashMap<Integer, T> coleccion) {
+		this.coleccion = coleccion;
+	}
+	public HashMap<Integer, T> getColeccion() {
+		return coleccion;
+	}
+	
+	
 }

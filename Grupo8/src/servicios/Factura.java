@@ -1,12 +1,13 @@
 package servicios;
 
+import java.io.Serializable;
 
 /**
  * @author Grupo8
  * <br>
  *Clase que representa una Factura
  */
-public class Factura implements Cloneable, I_Factura {
+public class Factura implements Cloneable, I_Factura,Serializable {
 
     private double totalSinP; //porcentaje ya que, dependiendo del tipo de pago se hace un incremento o descuento
     private double totalConP;
@@ -22,6 +23,7 @@ public class Factura implements Cloneable, I_Factura {
 		this.totalSinP=0;
 		this.pagado= false;
 	}
+	
 
 	public void setDetalles(String detalles) {
 		this.detalles= detalles;
@@ -72,5 +74,7 @@ public class Factura implements Cloneable, I_Factura {
         return facturaClonada;
                 
     }
+	
+	
 	
 }

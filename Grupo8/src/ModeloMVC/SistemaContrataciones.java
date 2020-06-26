@@ -20,6 +20,7 @@ import personas.Persona;
 import servicios.Domicilio;
 import servicios.Factura;
 import servicios.I_ColeccionDeFacturas;
+import servicios.Servicio;
 
 public class SistemaContrataciones implements I_Sistema,Serializable {
 	
@@ -50,7 +51,7 @@ public class SistemaContrataciones implements I_Sistema,Serializable {
 	}
 
 	public void agregarAbonado(Persona persona) {
-		if(!this.listaAbonados.containsKey(persona.getNombre()))
+		if(!this.listaAbonados.containsKey(persona.getNombre())) 
 			this.listaAbonados.put(persona.getNombre(), persona);
 		else
 		{
@@ -145,7 +146,7 @@ public class SistemaContrataciones implements I_Sistema,Serializable {
 		Factura actual;
 		while(iterator.hasNext()) {
 			actual=(Factura) iterator.next();
-			sb.append(actual.getDetalles()+"\n");
+			sb.append(actual.getDetalles());
 			if(actual.isPagado()==true) {
 				sb.append("PAGADA\n");
 				sb.append("PRECIO ORIGINAL: $"+ actual.getTotalSinP()+"\n");
@@ -155,7 +156,7 @@ public class SistemaContrataciones implements I_Sistema,Serializable {
 				sb.append("NO PAGADA\n");
 				sb.append("PRECIO ORIGINAL: $"+ actual.getTotalSinP()+"\n");
 			}
-			
+			sb.append("---------------------------------------------------------------------------\n");
 		}
 		this.listaFacturasClonadas=null;
 		return sb.toString();
@@ -175,7 +176,6 @@ public class SistemaContrataciones implements I_Sistema,Serializable {
 		StringBuilder sb= new StringBuilder();
 		for(HashMap.Entry<String,Persona> pair: listaAbonados.entrySet()) {
 			sb.append(pair.getValue().listarFacturas());
-			sb.append("---------------------------------------------------------------\n");
 		}
 		return sb.toString();
 	}

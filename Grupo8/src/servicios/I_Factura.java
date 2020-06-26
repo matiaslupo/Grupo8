@@ -5,7 +5,7 @@ package servicios;
  *<br>
  *Interfaz para la factura
  */
-public interface I_Factura extends Cloneable{
+public interface I_Factura extends Cloneable  {
 	
 	void setTotalSinP(double totalSinP);
 	

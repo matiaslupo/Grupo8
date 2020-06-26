@@ -1,5 +1,7 @@
 package mediospagos;
 
+import java.io.Serializable;
+
 import interfaces.I_Pago;
 
 /**
@@ -7,7 +9,7 @@ import interfaces.I_Pago;
  *<br>
  *Clase para el tipo de pago tarjeta
  */
-public class PagoTarjeta implements I_Pago {
+public class PagoTarjeta implements I_Pago,Serializable {
 	/**
 	 * Metodo que devuelve un porcentaje correspondiente por el pago usando la tarjeta siendo una persona fisica
 	 *@return devuelve un valor de tipo double 

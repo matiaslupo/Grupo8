@@ -1,5 +1,7 @@
 package servicios;
 
+import java.io.Serializable;
+
 import interfaces.I_Contratable;
 
 /**
@@ -7,13 +9,12 @@ import interfaces.I_Contratable;
  * <br>
  * Clase abstracta para los servicios de Internet
  */
-public abstract class Servicio implements I_Contratable{
+public abstract class Servicio implements I_Contratable,Serializable{
 	
-	private static int sigNro= 0;
+	private static int sigNro;
 	private int servicioID;
     private Domicilio domicilio;
 
-    
 	/**
 	 * Constructor de un servicio<br>
 	 * <b>Pre: </b>El parametro Domicilio debe ser distinto de null.<br>
@@ -25,7 +26,23 @@ public abstract class Servicio implements I_Contratable{
 		sigNro++;
 		this.servicioID= sigNro;
 	}
+	public Servicio() {}
 	
+	public static int getSigNro() {
+		return sigNro;
+	}
+	public static void setSigNro(int sigNro) {
+		Servicio.sigNro = sigNro;
+	}
+	public int getServicioID() {
+		return servicioID;
+	}
+	public void setServicioID(int servicioID) {
+		this.servicioID = servicioID;
+	}
+	public void setDomicilio(Domicilio domicilio) {
+		this.domicilio = domicilio;
+	}
 	public Servicio(Domicilio domicilio,int servicioID) { //PARA MODIFICAR SERVICIO
 		this.domicilio=domicilio;
 		this.servicioID= servicioID;
