@@ -10,6 +10,7 @@ import servicios.Domicilio;
  * <br>
  * Clase para aniadir nuevos agregados al Servicio, utilizando el patron Decorator
  */
+@SuppressWarnings("serial")
 public abstract class DecoratorAgregado implements I_Contratable,Serializable{
 	
 	private I_Contratable contratable;

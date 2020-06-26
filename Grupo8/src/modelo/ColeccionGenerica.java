@@ -9,10 +9,14 @@ import java.util.Iterator;
  *<br>
  *Coleccion generica
  */
+@SuppressWarnings("serial")
 public class ColeccionGenerica<T extends Cloneable> implements Cloneable,Serializable {
 
 	private HashMap<Integer,T> coleccion;
 	
+	/**
+	 * Constructor para inicializar el HashMap de la coleccion
+	 */
 	public ColeccionGenerica() {
 		this.coleccion= new HashMap<Integer,T>();
 	}
@@ -44,6 +48,8 @@ public class ColeccionGenerica<T extends Cloneable> implements Cloneable,Seriali
 	/**
 	 * Metodo que realiza la clonacion de la coleccion generica
 	 */
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Object clone() throws CloneNotSupportedException {
 		ColeccionGenerica clonado= null;
 		clonado= (ColeccionGenerica) super.clone();

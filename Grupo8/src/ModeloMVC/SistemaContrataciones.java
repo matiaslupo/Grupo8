@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Observable;
 import agregado.ContratableFactory;
 import excepciones.DomicilioInvalidoException;
 import excepciones.NoPuedeContratarException;
@@ -19,9 +18,13 @@ import interfaces.I_Pago;
 import personas.Persona;
 import servicios.Domicilio;
 import servicios.Factura;
-import servicios.I_ColeccionDeFacturas;
-import servicios.Servicio;
 
+/**
+ * @author Grupo8
+ * <br>
+ *Clase que representa al modelo MVC, es la clase que recibe los datos y efectua las operaciones correspondientes
+ */
+@SuppressWarnings("serial")
 public class SistemaContrataciones implements I_Sistema,Serializable {
 	
 	private static SistemaContrataciones  instancia= null; //APLICO EL PATRON SINGLETON PUES SE INSTANCIA POR UNICA VEZ
@@ -49,18 +52,19 @@ public class SistemaContrataciones implements I_Sistema,Serializable {
 			instancia= new SistemaContrataciones();
 		return instancia;
 	}
-
-	public void agregarAbonado(Persona persona) {
-		if(!this.listaAbonados.containsKey(persona.getNombre())) 
-			this.listaAbonados.put(persona.getNombre(), persona);
+	
+	/**
+	 * Agrega un abonado nuevo a la lista de abonados del sistema<br>
+	 * <b>Pre: </b>La persona debe ser distinto de cadena vacia y debe existir<br>
+	 * <b>Post: </b>Se agrega un abonado mas a la lista de abonados<br>
+	 * @param persona: Parametro de tipo String que representa al abonado que pertence al sistema
+	 * @throws PersonaExistenteException : Se lanza en el caso de que la persona ya exista
+	 */
+	public void agregarAbonado(Persona persona) throws PersonaExistenteException {
+		if(!this.listaAbonados.containsKey(persona.getNombre()))
+			this.listaAbonados.put(persona.getNombre(),persona);
 		else
-		{
-			try {
-				throw new PersonaExistenteException("Persona ya existente");
-			} catch (PersonaExistenteException e) {
-				System.out.println(e.getMessage());
-			}
-		}
+			throw new PersonaExistenteException("Persona ya existente");
 	}
 	/**
 	 * Agrega un servicio nuevo a la lista de contrataciones de factura<br>
@@ -72,18 +76,12 @@ public class SistemaContrataciones implements I_Sistema,Serializable {
 	 * @param cantTel: Parametro de tipo int que representa a la cantidad de telefonos que desea agregar
 	 * @param cantTV: Parametro de tipo int que representa a la cantidad de cables TV que desea agregar
 	 * @param domicilio: Parametro de tipo Domicilio que representa al domicilio del serivicio asociado
-	 * @throws NoPuedeContratarException 
+	 * @throws NoPuedeContratarException: Se lanza en el caso de que no se pueda contratar algun servicio 
 	 * @throws ServicioInternetInvalidoException: Se lanza en el caso de que el servicio sea invalido
 	 * @throws DomicilioInvalidoException: Se lanza en el caso de que el domicilio sea invalido
 	 */
-	public void agregarServicio(String persona,String internet, int cantCel, int cantTel, int cantTV, Domicilio domicilio) throws NoPuedeContratarException { 
-		try {
+	public void agregarServicio(String persona,String internet, int cantCel, int cantTel, int cantTV, Domicilio domicilio) throws NoPuedeContratarException, ServicioInternetInvalidoException, DomicilioInvalidoException { 
 			this.listaAbonados.get(persona).agregarContratacion(ContratableFactory.nuevoServicio(internet, cantCel, cantTel, cantTV, domicilio));
-		} catch (ServicioInternetInvalidoException e) { //VACIO O NO EXISTE
-			System.out.println(e.getMessage());
-		} catch (DomicilioInvalidoException e) { //VACIO
-			System.out.println(e.getMessage());
-		}
 	}
 	
 	/**
@@ -100,24 +98,12 @@ public class SistemaContrataciones implements I_Sistema,Serializable {
 	}
 			
 	/**
-	 * Metodo para abonar el total segun el medio de pago
-	 * <b>Pre: </b> El parametro nombrePersona debe ser distinto de null o cadena vacia;El parametro tipo debe ser distinto de null y debe existir<br>
-	 * <b>Post: </b> Devuelve el valor del total calculado con el porcentaje aplicado<br>
-	 * @param nombrePersona: Parametro de tipo String que representa al abonado de la factura
-	 * @param tipo: Parametro de tipo I_Pago que representa al medio de pago
-	 */
-	public void abonar(String nombrePersona,I_Pago tipo,int mes) {
-		Persona persona=this.listaAbonados.get(nombrePersona);
-		this.listaAbonados.get(nombrePersona).getColeccionDeFacturas().buscarFactura(mes);
-	}
-	
-	/**
 	 * Se elimina una contratacion de una lista de contrataciones de una factura que pertenece a un abonado.<br>
 	 * <b>Pre: </b> Los parametros nombrePersona y domicilio debe ser distinto de null<br>
 	 * <b>Post: </b> Se elimino una contratacion ; si la lista de contrataciones queda vacia, se elimina la factura  <br>
 	 * @param nombrePersona : Parametro de tipo String que representa el nombre de una persona.
-	 * @param nombrePersona : Parametro de tipo String que representa el domicilio de una persona.
-	 * @throws NoPuedeDarDeBajaException 
+	 * @param domicilio : Parametro de tipo String que representa el domicilio de una persona.
+	 * @throws NoPuedeDarDeBajaException : Se lanza en el caso de que no se pueda dar de baja algun servicio
 	 */
 	public void eliminarContratacion(String nombrePersona,String domicilio) throws NoPuedeDarDeBajaException {
 		if(this.listaAbonados.containsKey(nombrePersona)) { 
@@ -127,7 +113,10 @@ public class SistemaContrataciones implements I_Sistema,Serializable {
 	public Iterator<Persona> getPersonas(){
 		return this.listaAbonados.values().iterator();
 	}
-	
+	/**
+	 * Se clonan todas las facturas que tiene el Sistema.<br>
+	 */
+	@SuppressWarnings("rawtypes")
 	public void duplicarFacturas() {
 		this.listaFacturasClonadas=new ArrayList<Factura>();
 		Factura actual;
@@ -140,6 +129,10 @@ public class SistemaContrataciones implements I_Sistema,Serializable {
 		}
 	}
 	
+	/**
+	 * @return devuelve toda la informacion detallada de las facturas clonadas.<br>
+	 */
+	@SuppressWarnings("rawtypes")
 	public String listarClonadas() {
 		StringBuilder sb= new StringBuilder();
 		Iterator iterator=this.listaFacturasClonadas.iterator();
@@ -161,16 +154,8 @@ public class SistemaContrataciones implements I_Sistema,Serializable {
 		this.listaFacturasClonadas=null;
 		return sb.toString();
 	}
-
-/**
-	 * @param persona: Parametro de tipo String que representa al abonado que desee listar su factura, distinto de cadena vacia
-	 * @return Devuelve String que imprime la factura de un abonado
-	 */
-	public String listarFactura(String persona) {
-		return "sifi";
-	}
 	/**
-	 * @return Devuelve String de toda la informacion detallada de las facturas
+	 * @return Devuelve String de toda la informacion detallada de los abonados y sus facturas
 	 */
 	public String listarAbonados() {
 		StringBuilder sb= new StringBuilder();
@@ -180,6 +165,11 @@ public class SistemaContrataciones implements I_Sistema,Serializable {
 		return sb.toString();
 	}
 
+	/**
+	 * Se realiza el pago de la factura determinada.<br>
+	 * @throws NoPuedePagarException: Se lanza en el caso de que no se pueda pagar alguna factura
+	 * 
+	 */
 	public void pagarFactura(String nombrePersona, I_Pago tipo,int mes) throws NoPuedePagarException {
 		this.listaAbonados.get(nombrePersona).pagar(tipo, mes);
 		
@@ -191,11 +181,6 @@ public class SistemaContrataciones implements I_Sistema,Serializable {
 
 	public void setEmPasoTiempo(EmuladorPasoTiempo emPasoTiempo) {
 		this.emPasoTiempo = emPasoTiempo;
-	}
-
-	public void duplicarFactura(String persona) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public HashMap<String, Persona> getListaAbonados() {
@@ -221,11 +206,5 @@ public class SistemaContrataciones implements I_Sistema,Serializable {
 	public void setListaFacturasClonadas(ArrayList<Factura> listaFacturasClonadas) {
 		this.listaFacturasClonadas = listaFacturasClonadas;
 	}
-	
-	
-
-	
-
-	
 
 }

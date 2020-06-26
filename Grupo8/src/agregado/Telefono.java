@@ -8,6 +8,7 @@ import servicios.Domicilio;
  * <br>
  * Clase para Agregados tipo Telefono
  */
+@SuppressWarnings("serial")
 public class Telefono extends DecoratorAgregado {
 
 	/**

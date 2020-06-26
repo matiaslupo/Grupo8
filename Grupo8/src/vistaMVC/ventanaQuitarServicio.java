@@ -1,7 +1,6 @@
 package vistaMVC;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,7 +14,12 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.FlowLayout;
-
+/**
+ * @author Grupo8
+ * <br>
+ * Clase que representa a la ventana de QuitarServicio, que efectua las operaciones necesarias para la eliminacion de un servicio
+ */
+@SuppressWarnings("serial")
 public class ventanaQuitarServicio extends JFrame implements KeyListener{
 
 	private JPanel contentPane;

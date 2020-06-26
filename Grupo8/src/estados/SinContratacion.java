@@ -17,6 +17,7 @@ import personas.Fisica;
  *<br>
  *Estado de I_State para los abonados de tipo Fisica que no tienen ninguna contratacion
  */
+@SuppressWarnings("serial")
 public class SinContratacion implements I_State,Serializable {
 
 	private Fisica abonado;
@@ -34,6 +35,7 @@ public class SinContratacion implements I_State,Serializable {
 	 * <b>Post: </b> Se lanza la excepcion para ser capturada por el controlador<br>
 	 * @param tipo: Parametro para aplicar el porcentaje de descuento o recargo
 	 * @param mes: Parametro para buscar la factura de acuerdo al mes correspondiente
+	 * @throws NoPuedePagarException: se lanza cuando no se puede pagar alguna factura
 	 */
 	public void pagarFactura(I_Pago tipo, int mes) throws NoPuedePagarException  {
 		throw new NoPuedePagarException(abonado, "El abonado no tiene contrataciones que pagar");		
@@ -54,6 +56,7 @@ public class SinContratacion implements I_State,Serializable {
 	 * <b>Pre: </b> Contratacion no debe ser null <br>
 	 * <b>Post: </b> Se lanza la excepcion para ser capturada por el controlador <br>
 	 * @param contratacion: Parametro para ser eliminada de la coleccion
+	 * @throws NoPuedeDarDeBajaException: se lanza cuando no se puede dar de baja algun servicio
 	 */
 	public void darDeBajaServicio(String domicilio) throws NoPuedeDarDeBajaException {
 		throw new NoPuedeDarDeBajaException(abonado,"No puede dar de baja algún servicio aún");

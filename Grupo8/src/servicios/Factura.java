@@ -2,11 +2,14 @@ package servicios;
 
 import java.io.Serializable;
 
+import interfaces.I_Factura;
+
 /**
  * @author Grupo8
  * <br>
  *Clase que representa una Factura
  */
+@SuppressWarnings("serial")
 public class Factura implements Cloneable, I_Factura,Serializable {
 
     private double totalSinP; //porcentaje ya que, dependiendo del tipo de pago se hace un incremento o descuento
@@ -53,6 +56,9 @@ public class Factura implements Cloneable, I_Factura,Serializable {
 	public void setPagado(boolean valor) {
 		this.pagado = valor;
 	}
+	/**
+	 * Cuando se procede a pagar la factura, su estado de Pagado pasa a ser TRUE
+	 */
 	public void pagar() {
 		this.pagado= true;
 	}	
@@ -73,8 +79,5 @@ public class Factura implements Cloneable, I_Factura,Serializable {
 		}
         return facturaClonada;
                 
-    }
-	
-	
-	
+    }	
 }

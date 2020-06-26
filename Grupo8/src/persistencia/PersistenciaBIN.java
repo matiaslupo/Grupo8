@@ -7,6 +7,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+/**
+ * @author Grupo8
+ *<br>
+ *Clase para realizar la persistencia binaria
+ */
+@SuppressWarnings("serial")
 public class PersistenciaBIN  implements Serializable
 {
 

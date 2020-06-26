@@ -14,6 +14,7 @@ import servicios.Internet500;
  * <br>
  * Clase para crear nuevos Servicios utilizando el patron Factory.
  */
+@SuppressWarnings("serial")
 public class ContratableFactory implements Serializable {
 
 	/**	 

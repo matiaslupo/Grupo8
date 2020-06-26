@@ -1,7 +1,6 @@
 package vistaMVC;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -17,7 +16,12 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
+/**
+ * @author Grupo8
+ * <br>
+ * Clase que representa a la ventana de AltaSocio, que efectua las operaciones necesarias para la agregacion de un abonado
+ */
+@SuppressWarnings("serial")
 public class ventanaAltaSocio extends JFrame implements KeyListener,MouseListener {
 
 	private JPanel contentPane;

@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * Clase para el tipo de servicio Internet100
  */
+@SuppressWarnings("serial")
 public class Internet100 extends Servicio implements Serializable{
 
 	/**

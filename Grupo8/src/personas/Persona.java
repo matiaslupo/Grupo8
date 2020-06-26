@@ -11,11 +11,11 @@ import agregado.Telefono;
 import excepciones.NoPuedeContratarException;
 import excepciones.NoPuedeDarDeBajaException;
 import excepciones.NoPuedePagarException;
+import interfaces.I_ColeccionDeFacturas;
 import interfaces.I_Contratable;
 import interfaces.I_Pago;
 import servicios.Domicilio;
 import servicios.Factura;
-import servicios.I_ColeccionDeFacturas;
 import servicios.Internet100;
 import servicios.Internet500;
 import servicios.ListaFacturas;
@@ -26,6 +26,7 @@ import servicios.Servicio;
  * <br>
  * Clase abstracta que representa una Persona
  */
+@SuppressWarnings("serial")
 public abstract class Persona implements Cloneable,Serializable{
 	
 	private String nombre;
@@ -80,7 +81,7 @@ public abstract class Persona implements Cloneable,Serializable{
 	 * <b>Pre: </b> iContratable debe ser distinto de null <br>
 	 * <b>Post: </b> Se agrega una contratacion mas a la lista<br>
 	 * @param iContratable : Parametro que sera agregado a nuestra factura
-	 * @throws NoPuedeContratarException 
+	 * @throws NoPuedeContratarException : Se lanza en el caso de que no se pueda contratar algun servicio
 	 */
 	public abstract void agregarContratacion(I_Contratable iContratable) throws NoPuedeContratarException;
 	/**
@@ -172,10 +173,10 @@ public abstract class Persona implements Cloneable,Serializable{
 	}
 	/**
 	 * Elimina o da de baja un servicio 
-	 * <b>Pre: </b> El parametro posicion debe ser numero positivo y debe existir<br>
+	 * <b>Pre: </b> El parametro Domicilio debe ser distinto de null<br>
 	 * <b>Post: </b> Se elimina una linea de contratacion de la factura<br>
-	 * @param posicion: Parametro de tipo int que representa la posicion de dicha linea de contratacion dentro de la lista de contrataciones.
-	 * @throws NoPuedeDarDeBajaException 
+	 * @param domicilio: Parametro de tipo String que representa al domicilio que pertenece a la linea de contratacion que desea eliminar.
+	 * @throws NoPuedeDarDeBajaException : Se lanza en el caso de que no se pueda dar de baja algun servicio
 	 */
 	public abstract void eliminarContratacion(String domicilio) throws NoPuedeDarDeBajaException ;
 	/**
@@ -211,8 +212,18 @@ public abstract class Persona implements Cloneable,Serializable{
 			total+=this.listaContrataciones.get(i).getPrecio();
 		return total;
 	}
+	/**
+	 * Metodo para pagar una factura.<br>	
+	 *@param tipo: Parametro de tipo I_Pago que representa al tipo de pago que corresponda, debe ser distinto de null<br>
+	 *@param mes: Parametro de tipo int para ubicarse en la factura correspondiente, debe ser mayor a 0 y menor que 13<br> 
+	 *@throws NoPuedePagarException:se lanza cuando no se puede pagar alguna factura
+	 */
 	public abstract void pagar(I_Pago tipo,int mes) throws NoPuedePagarException;
 	
+	/**
+	 * @return devuelve toda la informacion detallada de las facturas
+	 */
+	@SuppressWarnings("rawtypes")
 	public String listarFacturas() {
 		StringBuilder sb= new StringBuilder();
 		Factura actualF;

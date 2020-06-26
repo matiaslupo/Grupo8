@@ -9,6 +9,7 @@ import interfaces.I_Pago;
  *<br>
  *Clase para el tipo de pago tarjeta
  */
+@SuppressWarnings("serial")
 public class PagoTarjeta implements I_Pago,Serializable {
 	/**
 	 * Metodo que devuelve un porcentaje correspondiente por el pago usando la tarjeta siendo una persona fisica

@@ -13,16 +13,19 @@ public interface I_State {
 	 * Metodo para pagar una factura.<br>	
 	 *@param tipo: Parametro de tipo I_Pago que representa al tipo de pago que corresponda, debe ser distinto de null<br>
 	 *@param mes: Parametro de tipo int para ubicarse en la factura correspondiente, debe ser mayor a 0 y menor que 13<br> 
+	 *@throws NoPuedePagarException:se lanza cuando no se puede pagar alguna factura
 	 */
 	public void pagarFactura(I_Pago tipo,int mes) throws NoPuedePagarException;
 	/**
 	 * Metodo para contratar un servicio.<br>	 
 	 * @param contratacion: Parametro de tipo I_Contratable que representa la contratacion a agregar, debe ser distinto de null<br>
+	 * @throws NoPuedeContratarException: se lanza cuando no se puede contratar algun servicio
 	 */
 	public void contratarNuevoServicio(I_Contratable contratacion) throws NoPuedeContratarException;
 	/**
 	 * Metodo para dar de baja algun servicio<br>	 
 	 * @param domicilio: Parametro de tipo String que representa al domicilio del abonado,debe ser distinto de null<br>
+	 * @throws NoPuedeDarDeBajaException: se lanza cuando no se puede dar de baja algun servicio
 	 */
 	public void darDeBajaServicio(String domicilio) throws NoPuedeDarDeBajaException;
 

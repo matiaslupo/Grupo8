@@ -1,7 +1,6 @@
 package vistaMVC;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,10 +14,14 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.JToolBar;
 import java.awt.Choice;
 import javax.swing.JButton;
-
+/**
+ * @author Grupo8
+ * <br>
+ * Clase que representa a la ventana de ModificarServicio, que efectua las operaciones necesarias para la modificacion de un servicio
+ */
+@SuppressWarnings("serial")
 public class ventanaModificarServicio extends JFrame implements KeyListener, MouseListener{
 
 	private JPanel contentPane;

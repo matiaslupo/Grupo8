@@ -10,6 +10,7 @@ import servicios.Domicilio;
  * <br>
  * Clase para un Agregado tipo Celular
  */
+@SuppressWarnings("serial")
 public class Celular extends DecoratorAgregado implements Serializable {
 
 	/**

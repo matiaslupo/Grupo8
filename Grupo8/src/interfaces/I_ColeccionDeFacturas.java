@@ -1,5 +1,5 @@
 
-package servicios;
+package interfaces;
 
 import java.util.Iterator;
 /**

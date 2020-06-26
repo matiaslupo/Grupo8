@@ -1,5 +1,5 @@
 
-package servicios;
+package interfaces;
 /**
  *@author Grupo8
  *<br>

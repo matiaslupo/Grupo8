@@ -6,19 +6,23 @@ import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
+import interfaces.I_Factura;
 import personas.Fisica;
 import personas.Persona;
 import servicios.Factura;
-import servicios.I_Factura;
 /**
  * @author Grupo8
  *<br>
  *Clase para el gestor de Facturacion e implementa Observer
  */
+@SuppressWarnings("serial")
 public class GestorDeFacturacion implements Observer,Serializable {
 
 	protected ArrayList<EmuladorPasoTiempo> emPasoTiempo= new ArrayList<EmuladorPasoTiempo>();
 	
+	/**
+	 * Constructor vacio
+	 */
 	public GestorDeFacturacion() {}
 
 	public ArrayList<EmuladorPasoTiempo> getEmPasoTiempo() {
@@ -43,6 +47,7 @@ public class GestorDeFacturacion implements Observer,Serializable {
 	/**
 	 * Metodo UpDate que permite realizar las facturas con sus correspondientes detalles
 	 */
+	@SuppressWarnings("unchecked")
 	public void update(Observable o, Object arg1) {
 		EmuladorPasoTiempo ept= (EmuladorPasoTiempo) o;
 		if (this.emPasoTiempo.contains(ept) && arg1!=null) {

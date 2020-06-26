@@ -9,6 +9,7 @@ import interfaces.I_Pago;
  * <br>
  * Clase para el tipo de pago Cheque
  */
+@SuppressWarnings("serial")
 public class PagoCheque implements I_Pago,Serializable {
 	
 	/**

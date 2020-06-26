@@ -1,7 +1,5 @@
 package vistaMVC;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
@@ -10,7 +8,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
+/**
+ * @author Grupo8
+ * <br>
+ * Clase que representa a la ventana PRINCIPAL, que efectua las operaciones necesarias para el sistema
+ */
+@SuppressWarnings("serial")
 public class ventanaPrincipal extends JFrame {
 	
 	// LABEL CON EL MES ACTUAL

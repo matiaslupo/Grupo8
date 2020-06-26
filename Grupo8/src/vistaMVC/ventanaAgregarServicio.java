@@ -1,8 +1,5 @@
 package vistaMVC;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,8 +15,12 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.ButtonGroup;
-import javax.swing.JComboBox;
-
+/**
+ * @author Grupo8
+ * <br>
+ * Clase que representa a la ventana de AgregarServicio, que efectua las operaciones necesarias para la agregacion de un servicio
+ */
+@SuppressWarnings("serial")
 public class ventanaAgregarServicio extends JFrame implements KeyListener,MouseListener {
 
 	private JPanel contentPane;

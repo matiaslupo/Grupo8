@@ -1,5 +1,6 @@
 package servicios;
 
+@SuppressWarnings("serial")
 public class DomicilioCasa extends Domicilio {
 	
 	

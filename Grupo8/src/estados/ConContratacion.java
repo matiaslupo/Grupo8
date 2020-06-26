@@ -3,20 +3,18 @@ package estados;
 
 
 import java.io.Serializable;
-
-import excepciones.NoPuedeContratarException;
 import interfaces.I_Contratable;
+import interfaces.I_Factura;
 import interfaces.I_Pago;
-
 import interfaces.I_State;
 import personas.Fisica;
-import servicios.I_Factura;
 
 /**
  * @author Grupo8
  *<br>
  *Estado de I_State para los abonados de tipo Fisica que ya tengan alguna/as contrataciones y sin deudas
  */
+@SuppressWarnings("serial")
 public class ConContratacion implements I_State,Serializable {
 
 	private Fisica abonado;
@@ -45,7 +43,6 @@ public class ConContratacion implements I_State,Serializable {
 	 * <b>Pre: </b> Contratacion debe ser distinto de null <br>
 	 * <b>Post: </b> Se agrega la contratacion en la colección de contrataciones <br>
 	 * @param contratacion: Parametro para ser agregado en la coleccion
-	 * @throws NoPuedeContratarException 
 	 */
 	public void contratarNuevoServicio(I_Contratable contratacion) {
 		abonado.getListaContrataciones().add(contratacion);

@@ -11,6 +11,7 @@ import personas.Persona;
  *<br>
  *Clase para el emulador de paso del tiempo
  */
+@SuppressWarnings("serial")
 public class EmuladorPasoTiempo extends Observable implements Serializable {
 	
 	private int mesActual;

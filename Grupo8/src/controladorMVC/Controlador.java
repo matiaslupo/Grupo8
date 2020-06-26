@@ -57,8 +57,15 @@ public class Controlador implements ActionListener, Observer {
 	public void update(Observable arg0, Object arg1) {
 		if (arg0==this.ept) {
 			EmuladorPasoTiempo obj= (EmuladorPasoTiempo) arg0;
-			this.vistaPrincipal.setMesActual(obj.getMesActual());
+			int mes= obj.getMesActual();
+			this.vistaPrincipal.setMesActual(mes);
+			if ((mes % 2) == 0)
+				this.visitaAFIP();
 		}
+	}
+	
+	public void visitaAFIP() {
+		
 	}
 
 	public void actionPerformed(ActionEvent arg0) {
@@ -181,5 +188,7 @@ public class Controlador implements ActionListener, Observer {
 		}
 	}
 	
+	private synchronized void abrirVentanaAltaSocio(String evento) {
+	}
 
 }

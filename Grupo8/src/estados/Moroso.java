@@ -7,16 +7,17 @@ import java.io.Serializable;
 import excepciones.NoPuedeContratarException;
 import excepciones.NoPuedeDarDeBajaException;
 import interfaces.I_Contratable;
+import interfaces.I_Factura;
 import interfaces.I_Pago;
 import interfaces.I_State;
 import personas.Fisica;
-import servicios.I_Factura;
 
 /**
  * @author Grupo8
  *<br>
  *Estado de I_State para los abonados de tipo Fisica que tienen dos o mas facturas consecutivas sin pagar
  */
+@SuppressWarnings("serial")
 public class Moroso implements I_State,Serializable {
 
 	private Fisica abonado;
@@ -49,6 +50,7 @@ public class Moroso implements I_State,Serializable {
 	 * <b>Pre: </b> Contratacion debe ser distinto de null <br>
 	 * <b>Post: </b> Se lanza la excepcion para ser capturada por el controlador <br>
 	 * @param contratacion: Parametro para ser agregado en la coleccion
+	 * @throws NoPuedeContratarException: se lanza cuando no se puede contratar algun servicio
 	 */
 	public void contratarNuevoServicio(I_Contratable contratacion) throws NoPuedeContratarException { 
 		throw new NoPuedeContratarException(abonado,"Tiene deudas,no puede contratar algún servicio!");
@@ -58,6 +60,7 @@ public class Moroso implements I_State,Serializable {
 	 * <b>Pre: </b> Contratacion debe ser distinto de null <br>
 	 * <b>Post: </b> Se lanza la excepcion para ser capturada por el controlador <br>
 	 * @param contratacion: Parametro para ser eliminada de la coleccion
+	 * @throws NoPuedeDarDeBajaException: se lanza cuando no se puede dar de baja algun servicio
 	 */
 	public void darDeBajaServicio(String domicilio) throws NoPuedeDarDeBajaException {
 		throw new NoPuedeDarDeBajaException(abonado,"Tiene deudas,no puede dar de baja algún servicio!");

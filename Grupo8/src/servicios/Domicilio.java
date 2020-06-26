@@ -7,6 +7,7 @@ import java.io.Serializable;
  * <br>
  * Clase que representa Domicilio
  */
+@SuppressWarnings("serial")
 public abstract class Domicilio implements Serializable {
 	
 	private String calle;

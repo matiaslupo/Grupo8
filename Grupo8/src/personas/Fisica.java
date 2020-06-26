@@ -14,6 +14,7 @@ import interfaces.I_State;
  * <br>
  * Clase que representa a una Persona Fisica
  */
+@SuppressWarnings("serial")
 public class Fisica extends Persona {
 	private I_State estado;
 	private int DNI;
@@ -92,16 +93,32 @@ public class Fisica extends Persona {
 	public void setEstado(I_State estado) {
 		this.estado = estado;
 	}
+	/**
+	 * Metodo para pagar una factura.<br>	
+	 *@param tipo: Parametro de tipo I_Pago que representa al tipo de pago que corresponda, debe ser distinto de null<br>
+	 *@param mes: Parametro de tipo int para ubicarse en la factura correspondiente, debe ser mayor a 0 y menor que 13<br> 
+	 *@throws NoPuedePagarException:se lanza cuando no se puede pagar alguna factura
+	 */
 	@Override
 	public void pagar(I_Pago tipo, int mes) throws NoPuedePagarException {
 			this.estado.pagarFactura(tipo, mes);
 		
 	}
+	/**
+	 * Metodo para contratar un servicio.<br>	 
+	 * @param contratacion: Parametro de tipo I_Contratable que representa la contratacion a agregar, debe ser distinto de null<br>
+	 * @throws NoPuedeContratarException: se lanza cuando no se puede contratar algun servicio
+	 */
 	@Override
 	public void agregarContratacion(I_Contratable iContratable) throws NoPuedeContratarException {
 		this.estado.contratarNuevoServicio(iContratable);
 		
 	}
+	/**
+	 * Metodo para dar de baja algun servicio<br>	 
+	 * @param domicilio: Parametro de tipo String que representa al domicilio del abonado,debe ser distinto de null<br>
+	 * @throws NoPuedeDarDeBajaException: se lanza cuando no se puede dar de baja algun servicio
+	 */
 	@Override
 	public void eliminarContratacion(String domicilio) throws NoPuedeDarDeBajaException {
 		this.estado.darDeBajaServicio(domicilio);		

@@ -9,6 +9,7 @@ import interfaces.I_Contratable;
  * <br>
  * Clase abstracta para los servicios de Internet
  */
+@SuppressWarnings("serial")
 public abstract class Servicio implements I_Contratable,Serializable{
 	
 	private static int sigNro;
