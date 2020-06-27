@@ -1,5 +1,7 @@
 package agregado;
 
+import java.io.Serializable;
+
 import interfaces.I_Contratable;
 import servicios.Domicilio;
 
@@ -8,7 +10,8 @@ import servicios.Domicilio;
  * <br>
  * Clase para un Agregado tipo Celular
  */
-public class Celular extends DecoratorAgregado {
+@SuppressWarnings("serial")
+public class Celular extends DecoratorAgregado implements Serializable {
 
 	/**
 	 * Constructor para un Agregado tipo Celular<br>

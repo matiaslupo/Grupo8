@@ -1,12 +1,14 @@
 package servicios;
 
+import java.io.Serializable;
 
 /**
  * @author Grupo8
  * <br>
  * Clase que representa Domicilio
  */
-public abstract class Domicilio {
+@SuppressWarnings("serial")
+public abstract class Domicilio implements Serializable {
 	
 	private String calle;
 	private int altura;
@@ -48,7 +50,8 @@ public abstract class Domicilio {
 	 * @return devuelve un String de calle y altura, es para buscar el id para modificar algun servicio
 	 */
 	public String getDireccion() {  
-		return this.calle + " " +this.altura;
+		String dir=(this.calle + " " +this.altura);
+		return dir.toUpperCase();
 	}
 	
 	/**

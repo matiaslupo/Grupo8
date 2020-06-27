@@ -8,6 +8,7 @@ import servicios.Domicilio;
  * <br>
  * Clase para un Agregado de tipo TV_Cable
  */
+@SuppressWarnings("serial")
 public class TV_Cable extends DecoratorAgregado {
 
 	/**

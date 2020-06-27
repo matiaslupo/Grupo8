@@ -5,6 +5,7 @@ package servicios;
  *<br>
  *Clase para domicilios con departamentos
  */
+@SuppressWarnings("serial")
 public class DomicilioDepto extends Domicilio {
 	
 	private int piso;

@@ -1,9 +1,12 @@
 package servicios;
 
+import java.io.Serializable;
+
 /**
  * Clase para el tipo de servicio Internet100
  */
-public class Internet100 extends Servicio {
+@SuppressWarnings("serial")
+public class Internet100 extends Servicio implements Serializable{
 
 	/**
 	 * Constuctor para un Servicio de tipo Internet100 <br>

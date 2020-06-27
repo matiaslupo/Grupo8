@@ -1,5 +1,7 @@
 package mediospagos;
 
+import java.io.Serializable;
+
 import interfaces.I_Pago;
 
 /**
@@ -7,7 +9,8 @@ import interfaces.I_Pago;
  * <br>
  * Clase para el tipo de pago Cheque
  */
-public class PagoCheque implements I_Pago {
+@SuppressWarnings("serial")
+public class PagoCheque implements I_Pago,Serializable {
 	
 	/**
 	 * Metodo que devuelve un porcentaje correspondiente por el pago usando el cheque siendo una persona fisica
