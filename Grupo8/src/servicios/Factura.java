@@ -64,6 +64,25 @@ public class Factura implements Cloneable, I_Factura,Serializable {
 	}	
 	
 	/**
+	 * @return devuelve toda la informacion detallada de la factura clonada.<br>
+	 */
+	public String toString() {
+		StringBuilder sb= new StringBuilder();
+		sb.append(this.getDetalles());
+			if(this.isPagado()==true) {
+				sb.append("PAGADA\n");
+				sb.append("PRECIO ORIGINAL: $"+ this.getTotalSinP()+"\n");
+				sb.append("PRECIO PAGADO APLICANDO DESCUENTO/RECARGO: $" + this.getTotalConP()+"\n");
+			}
+			else {
+				sb.append("NO PAGADA\n");
+				sb.append("PRECIO ORIGINAL: $"+ this.getTotalSinP()+"\n");
+			}
+			sb.append("---------------------------------------------------------------------------\n");
+		return sb.toString();
+	}
+	
+	/**
 	 * Metodo de clonacion de factura
 	 *@return Devuelve un clon de factura
 	 *@throws CloneNotSupportedException : se lanza cuando no es posible clonar la factura

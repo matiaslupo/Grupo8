@@ -50,10 +50,7 @@ public interface I_Sistema {
 	 * Metodo para listar abonados.<br>	
 	 */
 	public String listarAbonados();
-	/**
-	 * Metodo para listar clonadas.<br>	
-	 */
-	public String listarClonadas();
+
 
 
 }

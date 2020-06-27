@@ -1,4 +1,4 @@
-package ModeloMVC;
+package modeloMVC;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -129,31 +129,7 @@ public class SistemaContrataciones implements I_Sistema,Serializable {
 		}
 	}
 	
-	/**
-	 * @return devuelve toda la informacion detallada de las facturas clonadas.<br>
-	 */
-	@SuppressWarnings("rawtypes")
-	public String listarClonadas() {
-		StringBuilder sb= new StringBuilder();
-		Iterator iterator=this.listaFacturasClonadas.iterator();
-		Factura actual;
-		while(iterator.hasNext()) {
-			actual=(Factura) iterator.next();
-			sb.append(actual.getDetalles());
-			if(actual.isPagado()==true) {
-				sb.append("PAGADA\n");
-				sb.append("PRECIO ORIGINAL: $"+ actual.getTotalSinP()+"\n");
-				sb.append("PRECIO PAGADO APLICANDO DESCUENTO/RECARGO: $" + actual.getTotalConP()+"\n");
-			}
-			else {
-				sb.append("NO PAGADA\n");
-				sb.append("PRECIO ORIGINAL: $"+ actual.getTotalSinP()+"\n");
-			}
-			sb.append("---------------------------------------------------------------------------\n");
-		}
-		this.listaFacturasClonadas=null;
-		return sb.toString();
-	}
+	
 	/**
 	 * @return Devuelve String de toda la informacion detallada de los abonados y sus facturas
 	 */

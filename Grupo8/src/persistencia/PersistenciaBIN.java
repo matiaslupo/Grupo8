@@ -12,11 +12,10 @@ import java.io.Serializable;
  *<br>
  *Clase para realizar la persistencia binaria
  */
-@SuppressWarnings("serial")
-public class PersistenciaBIN  implements Serializable
+public class PersistenciaBIN 
 {
 
-    private FileOutputStream fileoutput;
+	private FileOutputStream fileoutput;
     private FileInputStream fileinput;
     private ObjectOutputStream objectoutput;
     private ObjectInputStream objectinput;
@@ -39,6 +38,7 @@ public class PersistenciaBIN  implements Serializable
     {
         if (objectoutput != null)
             objectoutput.close();
+
     }
 
     public void cerrarInput() throws IOException
@@ -49,18 +49,18 @@ public class PersistenciaBIN  implements Serializable
     }
 
 
-    public void escribir(Serializable serializable) throws IOException
+    public void escribir(Serializable p) throws IOException
     {
         if (objectoutput != null)
-            objectoutput.writeObject(serializable);
+            objectoutput.writeObject(p);
     }
 
     public Serializable leer() throws IOException, ClassNotFoundException
     {
-        Serializable serializable = null;
+        Serializable p = null;
         if (objectinput != null)
-            serializable = (Serializable) objectinput.readObject();
-        return serializable;
+            p = (Serializable) objectinput.readObject();
+        return p;
     }
 
 	

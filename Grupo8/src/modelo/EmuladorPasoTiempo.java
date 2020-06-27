@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Observable;
 
-import ModeloMVC.SistemaContrataciones;
+import modeloMVC.SistemaContrataciones;
 import personas.Persona;
 /**
  * @author Grupo8

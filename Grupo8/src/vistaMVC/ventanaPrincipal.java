@@ -21,7 +21,6 @@ public class ventanaPrincipal extends JFrame {
 
 	// BOTONES
 	private JButton agregarSocioBoton;
-	private JButton afipSocioBoton;
 	private JButton agregarServicioBoton; 
 	private JButton quitarServicioBoton;
 	private JButton pagarBoton;
@@ -41,7 +40,7 @@ public class ventanaPrincipal extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(9, 0, 0, 0));
+		contentPane.setLayout(new GridLayout(8, 0, 0, 0));
 		
 		JPanel panel_8 = new JPanel();
 		contentPane.add(panel_8);
@@ -91,12 +90,7 @@ public class ventanaPrincipal extends JFrame {
 		panel_6.add(eptBoton);
 		this.eptBoton.setActionCommand("EPT");
 		
-		JPanel panel_1 = new JPanel();
-		contentPane.add(panel_1);
 		
-		afipSocioBoton = new JButton("Afip");
-		panel_1.add(afipSocioBoton);
-		this.afipSocioBoton.setActionCommand("AFIP");
 		
 		panel_2 = new JPanel();
 		contentPane.add(panel_2);
@@ -116,7 +110,6 @@ public class ventanaPrincipal extends JFrame {
 		this.modificaServicioBoton.addActionListener(actionlistener);
 		this.quitarServicioBoton.addActionListener(actionlistener);
 		this.agregarSocioBoton.addActionListener(actionlistener);
-		this.afipSocioBoton.addActionListener(actionlistener);
 		this.eptBoton.addActionListener(actionlistener);
 		this.pagarBoton.addActionListener(actionlistener);
 		this.finalizarJornadaBoton.addActionListener(actionlistener);
